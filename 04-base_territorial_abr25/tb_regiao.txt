@@ -1,6 +1,0 @@
-0IGNORIgnorado/Exterior                         IGNORADO/EXTERIOR                         Ign/Ext                 8
-1ATIVORegião Norte                              REGIAO NORTE                              Norte                   1
-2ATIVORegião Nordeste                           REGIAO NORDESTE                           Nordeste                1
-3ATIVORegião Sudeste                            REGIAO SUDESTE                            Sudeste                 1
-4ATIVORegião Sul                                REGIAO SUL                                Sul                     1
-5ATIVORegião Centro-Oeste                       REGIAO CENTRO-OESTE                       C.Oeste                 1
