@@ -3,9 +3,9 @@
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-Este projeto realiza um fluxo completo de análise de dados de saúde pública, desde a coleta automatizada de dados brutos de fontes governamentais até a aplicação de técnicas de machine learning para agrupar municípios brasileiros segundo seus perfis de saúde.
+Este projeto apresenta um **framework completo e reutilizável** para análise de dados de saúde pública no Brasil. A arquitetura modular vai desde a coleta automatizada de dados brutos de fontes governamentais até a aplicação de técnicas de machine learning para agrupar municípios segundo seus perfis de saúde.
 
-O objetivo é transformar dados públicos do DATASUS e IBGE em inteligência acionável, culminando na criação de um painel de indicadores consolidados e na segmentação dos municípios por estado do Brasil por meio do algoritmo K-Means.
+O objetivo é transformar dados públicos do DATASUS e IBGE em inteligência acionável. Embora o estudo de caso apresentado foque no estado do Tocantins para o ano de 2022, a arquitetura do projeto foi desenhada para ser **facilmente adaptável a qualquer estado ou ano**, bastando a alteração de parâmetros nos scripts.
 
 ---
 
@@ -13,15 +13,15 @@ O objetivo é transformar dados públicos do DATASUS e IBGE em inteligência aci
 
 - **Coleta Automatizada de Dados:** Scripts para baixar dados diretamente dos sistemas do SUS (SIM, SINASC, CNES, SIH, SINAN).
 - **Cálculo de Indicadores:** Automatiza o cálculo de indicadores de saúde fundamentais.
-- **Consolidação de Dados:** Integra indicadores em um arquivo único CSV indexado por município.
-- **Análise de Cluster (K-Means):** Agrupa municípios em perfis de vulnerabilidade/eficiência.
+- **Consolidação de Dados:** Integra indicadores em um arquivo único CSV indexado por município para o estado e ano selecionados.
+- **Análise de Cluster (K-Means):** Agrupa municípios em perfis de vulnerabilidade/eficiência por meio de K-Means.
 - **Visualização:** Gera mapas de calor, "Snake Plots" e outros gráficos para análise e apresentação dos resultados.
 
 ---
 
-## 📊 Visualização dos Resultados para o Tocantins (2022)
+## 📊 Estudo de Caso: Visualização dos Resultados para o Tocantins (2022)
 
-A análise gera uma série de visualizações que permitem um diagnóstico completo da situação de saúde no estado.
+Para demonstrar a capacidade do framework, apresentamos os resultados da análise para o estado do Tocantins.
 
 ### Mapas de Calor por Indicador
 
@@ -70,17 +70,30 @@ Todos os dados são públicos e obtidos via DATASUS e IBGE.
 
 3.  **Gere a Base Populacional:**
     ```bash
-    python gerar_censo_2022.py
+    python populacao.py
     ```
     > **Obs:** Este passo cria o arquivo `populacao_brasil_censo_2022_com_estado.csv`, que é essencial para os próximos scripts.
+
+### 🌎 Adaptando para Outros Estados e Anos
+
+O principal poder deste projeto é sua flexibilidade. Para analisar um estado ou ano diferente, basta abrir os scripts de cálculo (ex: `mortalidade_infantil.py`, `medicos.py`, etc.) e **modificar as variáveis no topo do arquivo**:
+
+```python
+# Exemplo dentro de um dos scripts de indicador
+UF_SIGLA = 'SP'  # Altere de 'TO' para a sigla do estado desejado (ex: 'SP', 'BA', 'MG')
+ANO = 2021       # Altere para o ano desejado
+```
+
+### Execução do Fluxo de Análise
 
 4.  **Execute o Orquestrador:**
     ```bash
     python orquestrador.py
     ```
-    > Este script irá calcular todos os indicadores e gerar o arquivo `indicadores_integrados_tocantins_2022.csv`.
+    > Este script irá calcular todos os indicadores para a UF e ano definidos e gerar o arquivo `indicadores_integrados_[uf]_[ano].csv`.
 
 5.  **Execute a Análise de Cluster:**
+    Antes de executar, certifique-se de que o nome do arquivo CSV no script `analise_cluster.py` corresponde ao arquivo gerado pelo orquestrador.
     ```bash
     python analise_cluster.py
     ```
