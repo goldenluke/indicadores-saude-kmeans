@@ -34,12 +34,12 @@ A análise gera uma série de visualizações que permitem um diagnóstico compl
 
 A análise inicial envolve a geração de mapas de calor (coropléticos) para cada indicador individual, permitindo uma visualização direta da distribuição geográfica de cada métrica.
 
-| Taxa de Mortalidade Infantil | Cobertura de Pré-Natal |
+| Taxa de Mortalidade Infantil | Cobertura de Pré-Natal Adequado |
 | :---: | :---: |
 | ![TMI](mapa_tmi_to_2022.png) | ![Pré-Natal](mapa_cobertura_prenatal_to_2022.png) |
-| **Taxa de Médicos** | **Proporção de Cesáreas** |
+| **Taxa de Médicos por 1.000 Habitantes** | **Proporção de Partos Cesáreos** |
 | ![Médicos](mapa_taxa_medicos_to_2022.png) | ![Cesáreas](mapa_prop_cesareos_to_2022.png) |
-| **Óbitos Mal Definidos** | **Internações por Doenças Crônicas** |
+| **Óbitos Mal Definidos por 10.000 Habitantes** | **Internações por Doenças Crônicas por 10.000 Habitantes** |
 | ![Causas Mal Definidas](mapa_taxa_mal_definidas_to_2022.png) | ![Internações Crônicas](mapa_internacoes_cronicas_to_2022.png) |
 
 ### Análise de Cluster (K-Means)
