@@ -12,7 +12,7 @@ O objetivo é transformar dados públicos do DATASUS e IBGE em inteligência aci
 ## 🚀 Principais Funcionalidades
 
 - **Coleta Automatizada de Dados:** Scripts para baixar dados diretamente dos sistemas do SUS (SIM, SINASC, CNES, SIH, SINAN).
-- **Cálculo de Indicadores:** Automatiza o cálculo de indicadores de saúde fundamentais.
+- **Cálculo de Indicadores:** Automatiza o cálculo de 6 indicadores de saúde fundamentais.
 - **Consolidação de Dados:** Integra indicadores em um arquivo único CSV indexado por município para o estado e ano selecionados.
 - **Análise de Cluster (K-Means):** Agrupa municípios em perfis de vulnerabilidade/eficiência por meio de K-Means.
 - **Visualização:** Gera mapas de calor, "Snake Plots" e outros gráficos para análise e apresentação dos resultados.
@@ -21,7 +21,7 @@ O objetivo é transformar dados públicos do DATASUS e IBGE em inteligência aci
 
 ## 📊 Estudo de Caso: Visualização dos Resultados para o Tocantins (2022)
 
-Para demonstrar a capacidade do framework, apresentamos os resultados da análise para o estado do Tocantins.
+A análise gera uma série de visualizações que permitem um diagnóstico completo da situação de saúde no estado.
 
 ### Mapas de Calor por Indicador
 
