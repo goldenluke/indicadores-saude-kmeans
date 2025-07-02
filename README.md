@@ -1,4 +1,4 @@
-# Análise de Indicadores de Saúde e Clusterização de Municípios Brasileiros
+# Diagnóstico Situacional em Saúde Pública por Clusterização K-Means
 
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
