@@ -1,9 +1,0 @@
-partos_cesareos.py -> calcular_proporcao_partos_cesareos()
-causas_mal_definidas.py -> calcular_indicador_causas_mal_definidas()
-mortalidade_infantil.py -> calcular_tmi(uf_sigla='TO', ano=2022, arquivo_populacao="populacao_tocantins_2022.csv")
-medicos.py -> calcular_medicos_por_mil_habitantes()
-internacoes_cronicas.py -> calcular_internacoes_cronicas_por_10mil()
-pre_natal.py -> calcular_cobertura_prenatal_adequado()
-
-
-proporção de partos cesáreos, óbitos por causas mal definidas, taxa de mortalidade infantil, número de médicos por mil habitantes, internações por doenças crônicas por 10 mil, cobertura pre-natal adequada
