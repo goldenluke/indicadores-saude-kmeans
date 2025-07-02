@@ -40,7 +40,7 @@ A análise inicial envolve a geração de mapas de calor (coropléticos) para ca
 | **Taxa de Médicos** | **Proporção de Cesáreas** |
 | ![Médicos](mapa_taxa_medicos_to_2022.png) | ![Cesáreas](mapa_prop_cesareos_to_2022.png) |
 | **Óbitos Mal Definidos** | **Internações por Doenças Crônicas** |
-| ![Causas Mal Definidas](mapa_causas_mal_definidas_to_2022.png) | ![Internações Crônicas](mapa_internacoes_cronicas_to_2022.png) |
+| ![Causas Mal Definidas](mapa_taxa_mal_definidas_to_2022.png) | ![Internações Crônicas](mapa_internacoes_cronicas_to_2022.png) |
 
 ### Análise de Cluster (K-Means)
 
