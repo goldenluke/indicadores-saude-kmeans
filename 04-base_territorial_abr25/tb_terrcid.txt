@@ -1,0 +1,148 @@
+001Açu-Mossoró - RN                          ACU-MOSSORO - RN                          ATIVO 1
+002Agreste Meridional - PE                   AGRESTE MERIDIONAL - PE                   ATIVO 1
+004Alto Acre e Capixaba - AC                 ALTO ACRE E CAPIXABA - AC                 ATIVO 1
+005Alto Jequitinhonha - MG                   ALTO JEQUITINHONHA - MG                   ATIVO 1
+006Alto Juruá - AM                           ALTO JURUA - AM                           ATIVO 1
+007Alto Rio Pardo - MG                       ALTO RIO PARDO - MG                       ATIVO 1
+008Alto Sertão - SE                          ALTO SERTAO - SE                          ATIVO 1
+016Baixada Cuiabana - MT                     BAIXADA CUIABANA - MT                     ATIVO 1
+017Baixo Amazonas - AM                       BAIXO AMAZONAS - AM                       ATIVO 1
+018Baixo Amazonas - PA                       BAIXO AMAZONAS - PA                       ATIVO 1
+019Baixo Araguaia - MT                       BAIXO ARAGUAIA - MT                       ATIVO 1
+020Baixo Parnaíba - MA                       BAIXO PARNAIBA - MA                       ATIVO 1
+021Baixo Sul - BA                            BAIXO SUL - BA                            ATIVO 1
+022Bico do Papagaio - TO                     BICO DO PAPAGAIO - TO                     ATIVO 1
+024Borborema - PB                            BORBOREMA - PB                            ATIVO 1
+025Cantuquiriguaçu - PR                      CANTUQUIRIGUACU - PR                      ATIVO 1
+026Caparaó - ES                              CAPARAO - ES                              ATIVO 1
+027Cariri Ocidental - PB                     CARIRI OCIDENTAL - PB                     ATIVO 1
+028Carnaubais - PI                           CARNAUBAIS - PI                           ATIVO 1
+029Central - RO                              CENTRAL - RO                              ATIVO 1
+031Chapada Diamantina - BA                   CHAPADA DIAMANTINA - BA                   ATIVO 1
+032Sertão do Apodi - RN                      SERTAO DO APODI - RN                      ATIVO 1
+033Meio Oeste Contestado - SC                MEIO OESTE CONTESTADO - SC                ATIVO 1
+034Cocais - MA                               COCAIS - MA                               ATIVO 1
+035Cone Sul - MS                             CONE SUL - MS                             ATIVO 1
+036Bacia Leiteira - AL                       BACIA LEITEIRA - AL                       ATIVO 1
+037Reforma - MS                              REFORMA - MS                              ATIVO 1
+038Águas Emendadas - DF/GO/MG                AGUAS EMENDADAS - DF/GO/MG                ATIVO 1
+039Agreste - AL                              AGRESTE - AL                              ATIVO 1
+040Alto Sertão - AL                          ALTO SERTAO - AL                          ATIVO 1
+041Litoral Norte - AL                        LITORAL NORTE - AL                        ATIVO 1
+042Médio Sertão - AL                         MEDIO SERTAO - AL                         ATIVO 1
+043Sisal - BA                                SISAL - BA                                ATIVO 1
+044Manaus e Entorno - AM                     MANAUS E ENTORNO - AM                     ATIVO 1
+045Entre Rios - PI                           ENTRE RIOS - PI                           ATIVO 1
+047Grande Dourados - MS                      GRANDE DOURADOS - MS                      ATIVO 1
+048Sertão de Minas - MG                      SERTAO DE MINAS - MG                      ATIVO 1
+049Inhamuns Crateús - CE                     INHAMUNS CRATEUS - CE                     ATIVO 1
+050Irecê- BA                                 IRECE- BA                                 ATIVO 1
+051Vales do Curu e Aracatiaçu - CE           VALES DO CURU E ARACATIACU - CE           ATIVO 1
+052Lençóis Maranhenses/Munin - MA            LENCOIS MARANHENSES/MUNIN - MA            ATIVO 1
+053Madeira Mamoré - RO                       MADEIRA MAMORE - RO                       ATIVO 1
+054Mata Sul - PE                             MATA SUL - PE                             ATIVO 1
+055Mato Grande - RN                          MATO GRANDE - RN                          ATIVO 1
+056Médio Alto Uruguai - RS                   MEDIO ALTO URUGUAI - RS                   ATIVO 1
+057Médio Jequitinhonha - MG                  MEDIO JEQUITINHONHA - MG                  ATIVO 1
+059Médio Sertão - PB                         MEDIO SERTAO - PB                         ATIVO 1
+061Nordeste Paraense - PA                    NORDESTE PARAENSE - PA                    ATIVO 1
+062Noroeste - RJ                             NOROESTE - RJ                             ATIVO 1
+063Noroeste de Minas - MG                    NOROESTE DE MINAS - MG                    ATIVO 1
+064Norte - ES                                NORTE - ES                                ATIVO 1
+065Norte - RJ                                NORTE - RJ                                ATIVO 1
+067Vale do Rio Vermelho - GO                 VALE DO RIO VERMELHO - GO                 ATIVO 1
+068Paraná Centro - PR                        PARANA CENTRO - PR                        ATIVO 1
+070Planalto Norte - SC                       PLANALTO NORTE - SC                       ATIVO 1
+073Pontal do Paranapanema - SP               PONTAL DO PARANAPANEMA - SP               ATIVO 1
+074Portal da Amazônia - MT                   PORTAL DA AMAZONIA - MT                   ATIVO 1
+075Região Central - RS                       REGIAO CENTRAL - RS                       ATIVO 1
+076Seridó - RN                               SERIDO - RN                               ATIVO 1
+077Serra da Capivara - PI                    SERRA DA CAPIVARA - PI                    ATIVO 1
+079Serra Geral - MG                          SERRA GERAL - MG                          ATIVO 1
+080Sertão Central - CE                       SERTAO CENTRAL - CE                       ATIVO 1
+081Sertão do Araripe - PE                    SERTAO DO ARARIPE - PE                    ATIVO 1
+082Sertão do Pajeú - PE                      SERTAO DO PAJEU - PE                      ATIVO 1
+083Sertão do São Francisco - PE              SERTAO DO SAO FRANCISCO - PE              ATIVO 1
+084Sertão Ocidental - SE                     SERTAO OCIDENTAL - SE                     ATIVO 1
+085Sertões de Canindé - CE                   SERTOES DE CANINDE - CE                   ATIVO 1
+086Sobral - CE                               SOBRAL - CE                               ATIVO 1
+087Sudeste Paraense - PA                     SUDESTE PARAENSE - PA                     ATIVO 1
+089Sudoeste Paulista - SP                    SUDOESTE PAULISTA - SP                    ATIVO 1
+090Litoral Sul - BA                          LITORAL SUL - BA                          ATIVO 1
+091Sul de Roraima - RR                       SUL DE RORAIMA - RR                       ATIVO 1
+092Sul do Pará/Alto Xingu - PA               SUL DO PARA/ALTO XINGU - PA               ATIVO 1
+094Centro Oeste - AP                         CENTRO OESTE - AP                         ATIVO 1
+095Transamazônica - PA                       TRANSAMAZONICA - PA                       ATIVO 1
+096Vale do Guaribas - PI                     VALE DO GUARIBAS - PI                     ATIVO 1
+097Vale do Itapecuru - MA                    VALE DO ITAPECURU - MA                    ATIVO 1
+098Vale do Jamarí - RO                       VALE DO JAMARI - RO                       ATIVO 1
+099Vale do Mucuri - MG                       VALE DO MUCURI - MG                       ATIVO 1
+100Vale do Ribeira - SP                      VALE DO RIBEIRA - SP                      ATIVO 1
+101Vale do Ribeira - PR                      VALE DO RIBEIRA - PR                      ATIVO 1
+102Velho Chico - BA                          VELHO CHICO - BA                          ATIVO 1
+103Zona da Mata Norte - PB                   ZONA DA MATA NORTE - PB                   ATIVO 1
+104Zona Sul do Estado - RS                   ZONA SUL DO ESTADO - RS                   ATIVO 1
+105Sul Sergipano - SE                        SUL SERGIPANO - SE                        ATIVO 1
+106Vale do Juruá - AC                        VALE DO JURUA - AC                        ATIVO 1
+107Jalapão - TO                              JALAPAO - TO                              ATIVO 1
+111Sul do Amapá - AP                         SUL DO AMAPA - AP                         ATIVO 1
+112Lagos - AP                                LAGOS - AP                                ATIVO 1
+114BR 163 - PA                               BR 163 - PA                               ATIVO 1
+115Baixada Ocidental - MA                    BAIXADA OCIDENTAL - MA                    ATIVO 1
+117Baixo Jequitinhonha - MG                  BAIXO JEQUITINHONHA - MG                  ATIVO 1
+118Itaparica - BA/PE                         ITAPARICA - BA/PE                         ATIVO 1
+119Madeira - AM                              MADEIRA - AM                              ATIVO 1
+120Zona da Mata Sul - PB                     ZONA DA MATA SUL - PB                     ATIVO 1
+121Chapada dos Veadeiros - GO                CHAPADA DOS VEADEIROS - GO                ATIVO 1
+122Terra Indíg Raposa S. do Sol S.Marcos - RRTERRA INDIG RAPOSA S. DO SOL S.MARCOS - RRATIVO 1
+123Potengi - RN                              POTENGI - RN                              ATIVO 1
+124Sudeste - TO                              SUDESTE - TO                              ATIVO 1
+125Vale do Paranã - GO                       VALE DO PARANA - GO                       ATIVO 1
+126Mata Alagoana - AL                        MATA ALAGOANA - AL                        ATIVO 1
+127Vale do Ivinhema - MS                     VALE DO IVINHEMA - MS                     ATIVO 1
+129Marajó - PA                               MARAJO - PA                               ATIVO 1
+130Baixo Tocantins - PA                      BAIXO TOCANTINS - PA                      ATIVO 1
+131Carirí - CE                               CARIRI - CE                               ATIVO 1
+133Vale do Canindé - PI                      VALE DO CANINDE - PI                      ATIVO 1
+134Alto Oeste - RN                           ALTO OESTE - RN                           ATIVO 1
+135Baixo São Francisco - SE                  BAIXO SAO FRANCISCO - SE                  ATIVO 1
+136Rio Negro da Cidadania Indígena - AM      RIO NEGRO DA CIDADANIA INDIGENA - AM      ATIVO 1
+139Alto Turi e Gurupi - MA                   ALTO TURI E GURUPI - MA                   ATIVO 1
+140Médio Mearim - MA                         MEDIO MEARIM - MA                         ATIVO 1
+141Campo e Lagos - MA                        CAMPO E LAGOS - MA                        ATIVO 1
+143Sertão do São Francisco - BA              SERTAO DO SAO FRANCISCO - BA              ATIVO 1
+146Norte Pioneiro - PR                       NORTE PIONEIRO - PR                       ATIVO 1
+147Noroeste Colonial - RS                    NOROESTE COLONIAL - RS                    ATIVO 1
+160Curimataú - PB                            CURIMATAU - PB                            ATIVO 1
+161Cocais - PI                               COCAIS - PI                               ATIVO 1
+162Semiárido Nordeste II - BA                SEMIARIDO NORDESTE II - BA                ATIVO 1
+163Noroeste - MT                             NOROESTE - MT                             ATIVO 1
+165Mesorregião Alto Solimôes - AM            MESORREGIAO ALTO SOLIMOES - AM            ATIVO 1
+900Outros municípios - ignorados             OUTROS MUNICIPIOS - IGNORADO              OUTROS5
+911Outros municípios - RO                    OUTROS MUNICIPIOS - RO                    OUTROS5
+912Outros municípios - AC                    OUTROS MUNICIPIOS - AC                    OUTROS5
+913Outros municípios - AM                    OUTROS MUNICIPIOS - AM                    OUTROS5
+914Outros municípios - RR                    OUTROS MUNICIPIOS - RR                    OUTROS5
+915Outros municípios - PA                    OUTROS MUNICIPIOS - PA                    OUTROS5
+916Outros municípios - AP                    OUTROS MUNICIPIOS - AP                    OUTROS5
+917Outros municípios - TO                    OUTROS MUNICIPIOS - TO                    OUTROS5
+921Outros municípios - MA                    OUTROS MUNICIPIOS - MA                    OUTROS5
+922Outros municípios - PI                    OUTROS MUNICIPIOS - PI                    OUTROS5
+923Outros municípios - CE                    OUTROS MUNICIPIOS - CE                    OUTROS5
+924Outros municípios - RN                    OUTROS MUNICIPIOS - RN                    OUTROS5
+925Outros municípios - PB                    OUTROS MUNICIPIOS - PB                    OUTROS5
+926Outros municípios - PE                    OUTROS MUNICIPIOS - PE                    OUTROS5
+927Outros municípios - AL                    OUTROS MUNICIPIOS - AL                    OUTROS5
+928Outros municípios - SE                    OUTROS MUNICIPIOS - SE                    OUTROS5
+929Outros municípios - BA                    OUTROS MUNICIPIOS - BA                    OUTROS5
+931Outros municípios - MG                    OUTROS MUNICIPIOS - MG                    OUTROS5
+932Outros municípios - ES                    OUTROS MUNICIPIOS - ES                    OUTROS5
+933Outros municípios - RJ                    OUTROS MUNICIPIOS - RJ                    OUTROS5
+935Outros municípios - SP                    OUTROS MUNICIPIOS - SP                    OUTROS5
+941Outros municípios - PR                    OUTROS MUNICIPIOS - PR                    OUTROS5
+942Outros municípios - SC                    OUTROS MUNICIPIOS - SC                    OUTROS5
+943Outros municípios - RS                    OUTROS MUNICIPIOS - RS                    OUTROS5
+950Outros municípios - MS                    OUTROS MUNICIPIOS - MS                    OUTROS5
+951Outros municípios - MT                    OUTROS MUNICIPIOS - MT                    OUTROS5
+952Outros municípios - GO                    OUTROS MUNICIPIOS - GO                    OUTROS5
+953Outros municípios - DF                    OUTROS MUNICIPIOS - DF                    OUTROS5

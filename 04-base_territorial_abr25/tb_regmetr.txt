@@ -1,0 +1,164 @@
+00000IGNOR IGNOR Município ignorado ou exterior            MUNICIPIO IGNORADO OU EXTERIOR            Ignorado ou exterior    8
+11000IGNOR IGNOR Município ignorado - RO                   MUNICIPIO IGNORADO - RO                   Ignorado - RO           8
+11900OUTROSOUTROSFora da Região Metropolitana - RO         FORA DA REGIAO METROPOLITANA - RO         Fora de Reg.Metrop. - RO5
+12000IGNOR IGNOR Município ignorado - AC                   MUNICIPIO IGNORADO - AC                   Ignorado - AC           8
+12900OUTROSOUTROSFora da Região Metropolitana - AC         FORA DA REGIAO METROPOLITANA - AC         Fora de Reg.Metrop. - AC5
+13000IGNOR IGNOR Município ignorado - AM                   MUNICIPIO IGNORADO - AM                   Ignorado - AM           8
+13010ATIVO RMETR Manaus - AM                               MANAUS - AM                               Manaus - AM             1
+13900OUTROSOUTROSFora da Região Metropolitana - AM         FORA DA REGIAO METROPOLITANA - AM         Fora de Reg.Metrop. - AM5
+14000IGNOR IGNOR Município ignorado - RR                   MUNICIPIO IGNORADO - RR                   Ignorado - RR           8
+14010ATIVO RMETR Capital - RR                              CAPITAL - RR                              Capital - RR            1
+14020ATIVO RMETR Sul do Estado - RR                        SUL DO ESTADO - RR                        Sul do Estado - RR      1
+14030ATIVO RMETR Central - RR                              CENTRAL - RR                              Central - RR            1
+14900OUTROSOUTROSFora da Região Metropolitana - RR         FORA DA REGIAO METROPOLITANA - RR         Fora de Reg.Metrop. - RR5
+15000IGNOR IGNOR Município ignorado - PA                   MUNICIPIO IGNORADO - PA                   Ignorado - PA           8
+15010ATIVO RMETR Belém - PA                                BELEM - PA                                Belém - PA              1
+15020ATIVO RMETR Santarém - PA                             SANTAREM - PA                             Santarém - PA           1
+15900OUTROSOUTROSFora da Região Metropolitana - PA         FORA DA REGIAO METROPOLITANA - PA         Fora de Reg.Metrop. - PA5
+16000IGNOR IGNOR Município ignorado - AP                   MUNICIPIO IGNORADO - AP                   Ignorado - AP           8
+16010ATIVO RMETR Macapá - AP                               MACAPA - AP                               Macapá - AP             1
+16900OUTROSOUTROSFora da Região Metropolitana - AP         FORA DA REGIAO METROPOLITANA - AP         Fora de Reg.Metrop. - AP5
+17000IGNOR IGNOR Município ignorado - TO                   MUNICIPIO IGNORADO - TO                   Ignorado - TO           8
+17010ATIVO RMETR Palmas - TO                               PALMAS - TO                               Palmas - TO             1
+17020ATIVO RMETR Gurupi - TO                               GURUPI - TO                               Gurupi - TO             1
+17900OUTROSOUTROSFora da Região Metropolitana - TO         FORA DA REGIAO METROPOLITANA - TO         Fora de Reg.Metrop. - TO5
+21000IGNOR IGNOR Município ignorado - MA                   MUNICIPIO IGNORADO - MA                   Ignorado - MA           8
+21010ATIVO RMETR Grande São Luís - MA                      GRANDE SAO LUIS - MA                      Grande São Luís - MA    1
+21020ATIVO RMETR Sudoeste Maranhense - MA                  SUDOESTE MARANHENSE - MA                  Sudoeste Maranhense - MA1
+21900OUTROSOUTROSFora da Região Metropolitana - MA         FORA DA REGIAO METROPOLITANA - MA         Fora de Reg.Metrop. - MA5
+22000IGNOR IGNOR Município ignorado - PI                   MUNICIPIO IGNORADO - PI                   Ignorado - PI           8
+22010ATIVO RIDE  Grande Teresina - PI/MA                   GRANDE TERESINA - PI/MA                   Grande Teresina - PI/MA 1
+22900OUTROSOUTROSFora da Região Metropolitana - PI         FORA DA REGIAO METROPOLITANA - PI         Fora de Reg.Metrop. - PI5
+23000IGNOR IGNOR Município ignorado - CE                   MUNICIPIO IGNORADO - CE                   Ignorado - CE           8
+23010ATIVO RMETR Fortaleza - CE                            FORTALEZA - CE                            Fortaleza - CE          1
+23020ATIVO RMETR Cariri - CE                               CARIRI - CE                               Cariri - CE             1
+23900OUTROSOUTROSFora da Região Metropolitana - CE         FORA DA REGIAO METROPOLITANA - CE         Fora de Reg.Metrop. - CE5
+24000IGNOR IGNOR Município ignorado - RN                   MUNICIPIO IGNORADO - RN                   Ignorado - RN           8
+24010ATIVO RMETR Natal - RN                                NATAL - RN                                Natal - RN              1
+24900OUTROSOUTROSFora da Região Metropolitana - RN         FORA DA REGIAO METROPOLITANA - RN         Fora de Reg.Metrop. - RN5
+25000IGNOR IGNOR Município ignorado - PB                   MUNICIPIO IGNORADO - PB                   Ignorado - PB           8
+25010ATIVO RMETR João Pessoa - PB                          JOAO PESSOA - PB                          João Pessoa - PB        1
+25020ATIVO RMETR Campina Grande - PB                       CAMPINA GRANDE - PB                       Campina Grande - PB     1
+25030ATIVO RMETR Guarabira - PB                            GUARABIRA - PB                            Guarabira - PB          1
+25040ATIVO RMETR Patos - PB                                PATOS - PB                                Patos - PB              1
+25050ATIVO RMETR Esperança - PB                            ESPERANCA - PB                            Esperança - PB          1
+25060ATIVO RMETR Cajazeiras - PB                           CAJAZEIRAS - PB                           Cajazeiras - PB         1
+25070ATIVO RMETR Vale do Piancó - PB                       VALE DO PIANCO - PB                       Vale do Piancó - PB     1
+25080ATIVO RMETR Barra de Santa Rosa - PB                  BARRA DE SANTA ROSA - PB                  Barra de Santa Rosa - PB1
+25090ATIVO RMETR Vale do Mamanguape - PB                   VALE DO MAMANGUAPE - PB                   Vale do Mamanguape - PB 1
+25100ATIVO RMETR Sousa - PB                                SOUSA - PB                                Sousa - PB              1
+25110ATIVO RMETR Itabaiana - PB                            ITABAIANA - PB                            Itabaiana - PB          1
+25120ATIVO RMETR Araruna - PB                              ARARUNA - PB                              Araruna - PB            1
+25900OUTROSOUTROSFora da Região Metropolitana - PB         FORA DA REGIAO METROPOLITANA - PB         Fora de Reg.Metrop. - PB5
+26000IGNOR IGNOR Município ignorado - PE                   MUNICIPIO IGNORADO - PE                   Ignorado - PE           8
+26010ATIVO RMETR Recife - PE                               RECIFE - PE                               Recife - PE             1
+26020ATIVO RIDE  Pólo Petrolina e Juazeiro - PE/BA         POLO PETROLINA E JUAZEIRO - PE/BA         Petrolina/Juazeiro-PE/BA1
+26900OUTROSOUTROSFora da Região Metropolitana - PE         FORA DA REGIAO METROPOLITANA - PE         Fora de Reg.Metrop. - PE5
+27000IGNOR IGNOR Município ignorado - AL                   MUNICIPIO IGNORADO - AL                   Ignorado - AL           8
+27010ATIVO RMETR Maceió - AL                               MACEIO - AL                               Maceió - AL             1
+27020ATIVO RMETR Agreste - AL                              AGRESTE - AL                              Agreste - AL            1
+27030ATIVO RMETR Vale do Paraíba - AL                      VALE DO PARAIBA - AL                      Vale do Paraíba - AL    1
+27040ATIVO RMETR Zona da Mata - AL                         ZONA DA MATA - AL                         Zona da Mata - AL       1
+27050ATIVO RMETR Palmeira dos Índios - AL                  PALMEIRA DOS INDIOS - AL                  Palmeira dos Índios - AL1
+27060ATIVO RMETR Caetés - AL                               CAETES - AL                               Caetés - AL             1
+27070ATIVO RMETR Sertão - AL                               SERTAO - AL                               Sertão - AL             1
+27080ATIVO RMETR Médio Sertão - AL                         MEDIO SERTAO - AL                         Médio Sertão - AL       1
+27900OUTROSOUTROSFora da Região Metropolitana - AL         FORA DA REGIAO METROPOLITANA - AL         Fora de Reg.Metrop. - AL5
+28000IGNOR IGNOR Município ignorado - SE                   MUNICIPIO IGNORADO - SE                   Ignorado - SE           8
+28010ATIVO RMETR Aracaju - SE                              ARACAJU - SE                              Aracaju - SE            1
+28900OUTROSOUTROSFora da Região Metropolitana - SE         FORA DA REGIAO METROPOLITANA - SE         Fora de Reg.Metrop. - SE5
+29000IGNOR IGNOR Município ignorado - BA                   MUNICIPIO IGNORADO - BA                   Ignorado - BA           8
+29010ATIVO RMETR Salvador - BA                             SALVADOR - BA                             Salvador - BA           1
+29020ATIVO RMETR Feira de Santana - BA                     FEIRA DE SANTANA - BA                     Feira de Santana - BA   2
+29021ATIVO SRMETRFeira de Santana - núcleo metropolit - BA FEIRA DE SANTANA - NUCLEO METROPOLIT - BA Fde Santana - núc - BA  1
+29022ATIVO SRMETRFeira de Santana - área de expansão - BA  FEIRA DE SANTANA - AREA DE EXPANSAO - BA  F.de Santana - exp - BA 1
+29900OUTROSOUTROSFora da Região Metropolitana - BA         FORA DA REGIAO METROPOLITANA - BA         Fora de Reg.Metrop. - BA5
+31000IGNOR IGNOR Município ignorado - MG                   MUNICIPIO IGNORADO - MG                   Ignorado - MG           8
+31010ATIVO RMETR Belo Horizonte - MG                       BELO HORIZONTE - MG                       Belo Horizonte - MG     2
+31011ATIVO SRMETRBelo Horizonte - núcleo metropolitano - MGBELO HORIZONTE - NUCLEO METROPOLITANO - MGB.Horizonte - núcl - MG 1
+31012ATIVO SRMETRBelo Horizonte - colar metropolitano - MG BELO HORIZONTE - COLAR METROPOLITANO - MG BHorizonte - colar - MG 1
+31020ATIVO RMETR Vale do Aço - MG                          VALE DO ACO - MG                          Vale do Aço - MG        2
+31021ATIVO SRMETRVale do Aço - núcleo metropolitano - MG   VALE DO ACO - NUCLEO METROPOLITANO - - MG Vale do Aço - núcl - MG 1
+31022ATIVO SRMETRVale do Aço - colar metropolitano - MG    VALE DO ACO - COLAR METROPOLITANO - MG    Vale do Aço - colar - MG1
+31900OUTROSOUTROSFora da Região Metropolitana - MG         FORA DA REGIAO METROPOLITANA - MG         Fora de Reg.Metrop. - MG5
+32000IGNOR IGNOR Município ignorado - ES                   MUNICIPIO IGNORADO - ES                   Ignorado - ES           8
+32010ATIVO RMETR Grande Vitória - ES                       GRANDE VITORIA - ES                       Grande Vitória - ES     1
+32900OUTROSOUTROSFora da Região Metropolitana - ES         FORA DA REGIAO METROPOLITANA - ES         Fora de Reg.Metrop. - ES5
+33000IGNOR IGNOR Município ignorado - RJ                   MUNICIPIO IGNORADO - RJ                   Ignorado - RJ           8
+33010ATIVO RMETR Rio de Janeiro - RJ                       RIO DE JANEIRO - RJ                       Rio de Janeiro - RJ     1
+33900OUTROSOUTROSFora da Região Metropolitana - RJ         FORA DA REGIAO METROPOLITANA - RJ         Fora de Reg.Metrop. - RJ5
+35000IGNOR IGNOR Município ignorado - SP                   MUNICIPIO IGNORADO - SP                   Ignorado - SP           8
+35010ATIVO RMETR São Paulo - SP                            SAO PAULO - SP                            São Paulo - SP          1
+35020ATIVO RMETR Baixada Santista - SP                     BAIXADA SANTISTA - SP                     Baixada Santista - SP   1
+35030ATIVO RMETR Campinas - SP                             CAMPINAS - SP                             Campinas - SP           1
+35040ATIVO RMETR Vale do Paraíba e Litoral Norte - SP      VALE DO PARAIBA E LITORAL NORTE - SP      V.Paraíba/Lit Norte - SP1
+35041ATIVO SRMETRVale Paraíba/Litoral Norte - Subreg 1 - SPVALE PARAIBA/LITORAL NORTE - SUBREG 1 - SPV.Paraíba/Lit Nort 1 -SP1
+35042ATIVO SRMETRVale Paraíba/Litoral Norte - Subreg 2 - SPVALE PARAIBA/LITORAL NORTE - SUBREG 2 - SPV.Paraíba/Lit Nort 2 -SP1
+35043ATIVO SRMETRVale Paraíba/Litoral Norte - Subreg 3 - SPVALE PARAIBA/LITORAL NORTE - SUBREG 3 - SPV.Paraíba/Lit Nort 3 -SP1
+35044ATIVO SRMETRVale Paraíba/Litoral Norte - Subreg 4 - SPVALE PARAIBA/LITORAL NORTE - SUBREG 4 - SPV.Paraíba/Lit Nort 4 -SP1
+35045ATIVO SRMETRVale Paraíba/Litoral Norte - Subreg 5 - SPVALE PARAIBA/LITORAL NORTE - SUBREG 5 - SPV.Paraíba/Lit Nort 5 -SP1
+35050ATIVO RMETR Jundiaí - SP                              JUNDIAI - SP                              Jundiaí - SP            1
+35060ATIVO RMETR Piracicaba - SP                           PIRACICABA - SP                           Piracicaba - SP         1
+35070ATIVO RMETR Sorocaba - SP                             SOROCABA - SP                             Sorocaba - SP           1
+35900OUTROSOUTROSFora da Região Metropolitana - SP         FORA DA REGIAO METROPOLITANA - SP         Fora de Reg.Metrop. - SP5
+41000IGNOR IGNOR Município ignorado - PR                   MUNICIPIO IGNORADO - PR                   Ignorado - PR           8
+41010ATIVO RMETR Curitiba - PR                             CURITIBA - PR                             Curitiba - PR           1
+41020ATIVO RMETR Londrina - PR                             LONDRINA - PR                             Londrina - PR           1
+41030ATIVO RMETR Maringá - PR                              MARINGA - PR                              Maringá - PR            1
+41040ATIVO RMETR Umuarama - PR                             UMUARAMA - PR                             Umuarama - PR           1
+41050ATIVO RMETR Apucarana - PR                            APUCARANA - PR                            Apucarana - PR          1
+41060ATIVO RMETR Campo Mourão - PR                         CAMPO MOURAO - PR                         Campo Mourão - PR       1
+41070ATIVO RMETR Cascavel - PR                             CASCAVEL - PR                             Cascavel - PR           1
+41080ATIVO RMETR Toledo - PR                               TOLEDO - PR                               Toledo - PR             1
+41900OUTROSOUTROSFora da Região Metropolitana - PR         FORA DA REGIAO METROPOLITANA - PR         Fora de Reg.Metrop. - PR5
+42000IGNOR IGNOR Município ignorado - SC                   MUNICIPIO IGNORADO - SC                   Ignorado - SC           8
+42010ATIVO RMETR Florianópolis - SC                        FLORIANOPOLIS -SC                         Florianópolis - SC      2
+42011ATIVO SRMETRFlorianópolis - núcleo metropolitano - SC FLORIANOPOLIS - NUCLEO METROPOLITANO - SC Florianópolis - núc - SC1
+42012ATIVO SRMETRFlorianópolis - área de expansão - SC     FLORIANOPOLIS - AREA DE EXPANSAO - SC     Florianópolis - exp - SC1
+42020ATIVO RMETR Vale do Itajaí - SC                       VALE DO ITAJAI - SC                       Vale do Itajaí - SC     2
+42021ATIVO SRMETRVale do Itajaí - núcleo metropolitano - SCVALE DO ITAJAI - NUCLEO METROPOLITANO - SCVale Itajaí - núc - SC  1
+42022ATIVO SRMETRVale do Itajaí - área de expansão - SC    VALE DO ITAJAI - AREA DE EXPANSAO - SC    Vale Itajaí - exp - SC  1
+42030ATIVO RMETR Norte/Nordeste  Catarinense - SC          NORTE/NORDESTE CATARINENSE - SC           Norte/Nordeste  - SC    2
+42031ATIVO SRMETRNorte/Nordeste Catar - núcleo metrop - SC NORTE/NORDESTE CATAR - NUCLEO METROP - SC Norte/Nordest - núc - SC1
+42032ATIVO SRMETRNorte/Nordeste Catar - área expansão - SC NORTE/NORDESTE CATAR - ÁREA EXPANSÃO - SC Norte/Nordest - exp - SC1
+42040ATIVO RMETR Foz do Rio Itajaí - SC                    FOZ DO RIO ITAJAI - SC                    Foz do Rio Itajaí - SC  2
+42041ATIVO SRMETRFoz do Rio Itajaí - núcleo metropolit - SCFOZ DO RIO ITAJAI - NUCLEO METROPOLIT - SCFoz R.Itajaí - núc - SC 1
+42042ATIVO SRMETRFoz do Rio Itajaí - área de expansão - SC FOZ DO RIO ITAJAI - AREA DE EXPANSAO - SC Foz R.Itajaí - exp - SC 1
+42050ATIVO RMETR Carbonífera - SC                          CARBONIFERA - SC                          Carbonífera - SC        2
+42051ATIVO SRMETRCarbonífera - núcleo metropolitano - SC   CARBONIFERA - NUCLEO METROPOLITANO - SC   Carbonífera - núc - SC  1
+42052ATIVO SRMETRCarbonífera - área de expansão - SC       CARBONIFERA - AREA DE EXPANSAO - SC       Carbonífera - exp - SC  1
+42060ATIVO RMETR Tubarão - SC                              TUBARAO - SC                              Tubarão - SC            2
+42061ATIVO SRMETRTubarão - núcleo metropolitano - SC       TUBARAO - NUCLEO METROPOLITANO - SC       Tubarão - núc - SC      1
+42062ATIVO SRMETRTubarão - área de expansão - SC           TUBARAO - AREA DE EXPANSAO - SC           Tubarão - exp - SC      1
+42070ATIVO RMETR Lages - SC                                LAGES - SC                                Lages - SC              2
+42071ATIVO SRMETRLages - núcleo metropolitano - SC         LAGES - NUCLEO METROPOLITANO - SC         Lages - núc - SC        1
+42072ATIVO SRMETRLages - área de expansão - SC             LAGES - AREA DE EXPANSAO - SC             Lages - exp - SC        1
+42080ATIVO RMETR Chapecó - SC                              CHAPECO - SC                              Chapecó - SC            2
+42081ATIVO SRMETRChapecó - núcleo metropolitano - SC       RM CHAPECO - NUCLEO METROPOLITANO - SC    Chapecó - núc - SC      1
+42082ATIVO SRMETRChapecó - área de expansão - SC           RM CHAPECO - AREA DE EXPANSAO - SC        Chapecó - exp - SC      1
+42090ATIVO RMETR Alto Vale do Itajaí - SC                  ALTO VALE DO ITAJAI - SC                  Alto Vale do Itajaí - SC2
+42091ATIVO SRMETRAlto Vale do Itajaí - núcleo metropol - SCALTO VALE DO ITAJAI - NUCLEO METROPOL - SCAlto V.Itajaí - núc - SC1
+42092ATIVO SRMETRAlto Vale do Itajaí - área expansão - SC  ALTO VALE DO ITAJAI - AREA EXPANSAO - SC  Alto V.Itajaí - exp - SC1
+42100ATIVO RMETR Extremo Oeste - SC                        EXTREMO OESTE - SC                        Extremo Oeste - SC      2
+42101ATIVO SRMETRExtremo Oeste - Núcleo Metropolitano - SC EXTREMO OESTE - NUCLEO METROPOLITANO - SC Extremo Oeste - núc - SC1
+42102ATIVO SRMETRExtremo Oeste - Área de Expansão - SC     EXTREMO OESTE - AREA DE EXPANSAO - SC     Extremo Oeste - exp - SC1
+42110ATIVO RMETR Contestado - SC                           CONTESTADO - SC                           Contestado - SC         2
+42111ATIVO SRMETRContestado - Núcleo Metropolitano - SC    CONTESTADO - NUCLEO METROPOLITANO - SC    Contestado - núcleo - SC1
+43000IGNOR IGNOR Município ignorado - RS                   MUNICIPIO IGNORADO - RS                   Ignorado - RS           8
+43010ATIVO RMETR Porto Alegre - RS                         PORTO ALEGRE - RS                         Porto Alegre - RS       1
+43020ATIVO RMETR Litoral Norte - RS                        LITORAL NORTE - RS                        Litoral Norte - RS      1
+43030ATIVO RMETR Serra Gaúcha - RS                         SERRA GAUCHA - RS                         Serra Gaúcha - RS       1
+43040ATIVO RMETR Sul - RS                                  SUL - RS                                  Sul - RS                1
+43900OUTROSOUTROSFora da Região Metropolitana - RS         FORA DA REGIAO METROPOLITANA - RS         Fora de Reg.Metrop. - RS5
+50000IGNOR IGNOR Município ignorado - MS                   MUNICIPIO IGNORADO - MS                   Ignorado - MS           8
+50900OUTROSOUTROSFora da Região Metropolitana - MS         FORA DA REGIAO METROPOLITANA - MS         Fora de Reg.Metrop. - MS5
+51000IGNOR IGNOR Município ignorado - MT                   MUNICIPIO IGNORADO - MT                   Ignorado - MT           8
+51010ATIVO RMETR Vale do Rio Cuiabá - MT                   VALE DO RIO CUIABA - MT                   Vale do Rio Cuiabá - MT 2
+51011ATIVO SRMETRVale do Rio Cuiabá - núcleo metropol - MT VALE DO RIO CUIABA - NUCLEO METROPOL - MT Vale R.Cuiabá - núc - MT1
+51012ATIVO SRMETRVale do Rio Cuiabá - entorno metrop - MT  VALE DO RIO CUIABA - ENTORNO METROP - MT  Vale R.Cuiabá - ent - MT1
+51900OUTROSOUTROSFora da Região Metropolitana - MT         FORA DA REGIAO METROPOLITANA - MT         Fora de Reg.Metrop. - MT5
+52000IGNOR IGNOR Município ignorado - GO                   MUNICIPIO IGNORADO - GO                   Ignorado - GO           8
+52010ATIVO RMETR Goiânia - GO                              GOIANIA - GO                              Goiânia - GO            1
+52900OUTROSOUTROSFora da Região Metropolitana - GO         FORA DA REGIAO METROPOLITANA - GO         Fora de Reg.Metrop. - GO5
+52980TRANSFTRANSFMunicípios transferidos para Tocantins    MUNICIPIOS TRANSFERIDOS PARA TOCANTINS    Transf p/Tocantins      7
+53010ATIVO RIDE  Distrito Federal e Entorno - DF/GO/MG     DISTRITO FEDERAL E ENTORNO - DF/GO/MG     DF e Entorno - DF/GO/MG 1

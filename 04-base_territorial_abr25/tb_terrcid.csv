@@ -1,0 +1,149 @@
+"CO_TERRCID";"DS_NOME";"DS_NOMEPAD";"CO_STATUS";"NU_ORDMAP"
+"001";"Açu-Mossoró - RN";"ACU-MOSSORO - RN";"ATIVO";1
+"002";"Agreste Meridional - PE";"AGRESTE MERIDIONAL - PE";"ATIVO";1
+"004";"Alto Acre e Capixaba - AC";"ALTO ACRE E CAPIXABA - AC";"ATIVO";1
+"005";"Alto Jequitinhonha - MG";"ALTO JEQUITINHONHA - MG";"ATIVO";1
+"006";"Alto Juruá - AM";"ALTO JURUA - AM";"ATIVO";1
+"007";"Alto Rio Pardo - MG";"ALTO RIO PARDO - MG";"ATIVO";1
+"008";"Alto Sertão - SE";"ALTO SERTAO - SE";"ATIVO";1
+"016";"Baixada Cuiabana - MT";"BAIXADA CUIABANA - MT";"ATIVO";1
+"017";"Baixo Amazonas - AM";"BAIXO AMAZONAS - AM";"ATIVO";1
+"018";"Baixo Amazonas - PA";"BAIXO AMAZONAS - PA";"ATIVO";1
+"019";"Baixo Araguaia - MT";"BAIXO ARAGUAIA - MT";"ATIVO";1
+"020";"Baixo Parnaíba - MA";"BAIXO PARNAIBA - MA";"ATIVO";1
+"021";"Baixo Sul - BA";"BAIXO SUL - BA";"ATIVO";1
+"022";"Bico do Papagaio - TO";"BICO DO PAPAGAIO - TO";"ATIVO";1
+"024";"Borborema - PB";"BORBOREMA - PB";"ATIVO";1
+"025";"Cantuquiriguaçu - PR";"CANTUQUIRIGUACU - PR";"ATIVO";1
+"026";"Caparaó - ES";"CAPARAO - ES";"ATIVO";1
+"027";"Cariri Ocidental - PB";"CARIRI OCIDENTAL - PB";"ATIVO";1
+"028";"Carnaubais - PI";"CARNAUBAIS - PI";"ATIVO";1
+"029";"Central - RO";"CENTRAL - RO";"ATIVO";1
+"031";"Chapada Diamantina - BA";"CHAPADA DIAMANTINA - BA";"ATIVO";1
+"032";"Sertão do Apodi - RN";"SERTAO DO APODI - RN";"ATIVO";1
+"033";"Meio Oeste Contestado - SC";"MEIO OESTE CONTESTADO - SC";"ATIVO";1
+"034";"Cocais - MA";"COCAIS - MA";"ATIVO";1
+"035";"Cone Sul - MS";"CONE SUL - MS";"ATIVO";1
+"036";"Bacia Leiteira - AL";"BACIA LEITEIRA - AL";"ATIVO";1
+"037";"Reforma - MS";"REFORMA - MS";"ATIVO";1
+"038";"Águas Emendadas - DF/GO/MG";"AGUAS EMENDADAS - DF/GO/MG";"ATIVO";1
+"039";"Agreste - AL";"AGRESTE - AL";"ATIVO";1
+"040";"Alto Sertão - AL";"ALTO SERTAO - AL";"ATIVO";1
+"041";"Litoral Norte - AL";"LITORAL NORTE - AL";"ATIVO";1
+"042";"Médio Sertão - AL";"MEDIO SERTAO - AL";"ATIVO";1
+"043";"Sisal - BA";"SISAL - BA";"ATIVO";1
+"044";"Manaus e Entorno - AM";"MANAUS E ENTORNO - AM";"ATIVO";1
+"045";"Entre Rios - PI";"ENTRE RIOS - PI";"ATIVO";1
+"047";"Grande Dourados - MS";"GRANDE DOURADOS - MS";"ATIVO";1
+"048";"Sertão de Minas - MG";"SERTAO DE MINAS - MG";"ATIVO";1
+"049";"Inhamuns Crateús - CE";"INHAMUNS CRATEUS - CE";"ATIVO";1
+"050";"Irecê- BA";"IRECE- BA";"ATIVO";1
+"051";"Vales do Curu e Aracatiaçu - CE";"VALES DO CURU E ARACATIACU - CE";"ATIVO";1
+"052";"Lençóis Maranhenses/Munin - MA";"LENCOIS MARANHENSES/MUNIN - MA";"ATIVO";1
+"053";"Madeira Mamoré - RO";"MADEIRA MAMORE - RO";"ATIVO";1
+"054";"Mata Sul - PE";"MATA SUL - PE";"ATIVO";1
+"055";"Mato Grande - RN";"MATO GRANDE - RN";"ATIVO";1
+"056";"Médio Alto Uruguai - RS";"MEDIO ALTO URUGUAI - RS";"ATIVO";1
+"057";"Médio Jequitinhonha - MG";"MEDIO JEQUITINHONHA - MG";"ATIVO";1
+"059";"Médio Sertão - PB";"MEDIO SERTAO - PB";"ATIVO";1
+"061";"Nordeste Paraense - PA";"NORDESTE PARAENSE - PA";"ATIVO";1
+"062";"Noroeste - RJ";"NOROESTE - RJ";"ATIVO";1
+"063";"Noroeste de Minas - MG";"NOROESTE DE MINAS - MG";"ATIVO";1
+"064";"Norte - ES";"NORTE - ES";"ATIVO";1
+"065";"Norte - RJ";"NORTE - RJ";"ATIVO";1
+"067";"Vale do Rio Vermelho - GO";"VALE DO RIO VERMELHO - GO";"ATIVO";1
+"068";"Paraná Centro - PR";"PARANA CENTRO - PR";"ATIVO";1
+"070";"Planalto Norte - SC";"PLANALTO NORTE - SC";"ATIVO";1
+"073";"Pontal do Paranapanema - SP";"PONTAL DO PARANAPANEMA - SP";"ATIVO";1
+"074";"Portal da Amazônia - MT";"PORTAL DA AMAZONIA - MT";"ATIVO";1
+"075";"Região Central - RS";"REGIAO CENTRAL - RS";"ATIVO";1
+"076";"Seridó - RN";"SERIDO - RN";"ATIVO";1
+"077";"Serra da Capivara - PI";"SERRA DA CAPIVARA - PI";"ATIVO";1
+"079";"Serra Geral - MG";"SERRA GERAL - MG";"ATIVO";1
+"080";"Sertão Central - CE";"SERTAO CENTRAL - CE";"ATIVO";1
+"081";"Sertão do Araripe - PE";"SERTAO DO ARARIPE - PE";"ATIVO";1
+"082";"Sertão do Pajeú - PE";"SERTAO DO PAJEU - PE";"ATIVO";1
+"083";"Sertão do São Francisco - PE";"SERTAO DO SAO FRANCISCO - PE";"ATIVO";1
+"084";"Sertão Ocidental - SE";"SERTAO OCIDENTAL - SE";"ATIVO";1
+"085";"Sertões de Canindé - CE";"SERTOES DE CANINDE - CE";"ATIVO";1
+"086";"Sobral - CE";"SOBRAL - CE";"ATIVO";1
+"087";"Sudeste Paraense - PA";"SUDESTE PARAENSE - PA";"ATIVO";1
+"089";"Sudoeste Paulista - SP";"SUDOESTE PAULISTA - SP";"ATIVO";1
+"090";"Litoral Sul - BA";"LITORAL SUL - BA";"ATIVO";1
+"091";"Sul de Roraima - RR";"SUL DE RORAIMA - RR";"ATIVO";1
+"092";"Sul do Pará/Alto Xingu - PA";"SUL DO PARA/ALTO XINGU - PA";"ATIVO";1
+"094";"Centro Oeste - AP";"CENTRO OESTE - AP";"ATIVO";1
+"095";"Transamazônica - PA";"TRANSAMAZONICA - PA";"ATIVO";1
+"096";"Vale do Guaribas - PI";"VALE DO GUARIBAS - PI";"ATIVO";1
+"097";"Vale do Itapecuru - MA";"VALE DO ITAPECURU - MA";"ATIVO";1
+"098";"Vale do Jamarí - RO";"VALE DO JAMARI - RO";"ATIVO";1
+"099";"Vale do Mucuri - MG";"VALE DO MUCURI - MG";"ATIVO";1
+"100";"Vale do Ribeira - SP";"VALE DO RIBEIRA - SP";"ATIVO";1
+"101";"Vale do Ribeira - PR";"VALE DO RIBEIRA - PR";"ATIVO";1
+"102";"Velho Chico - BA";"VELHO CHICO - BA";"ATIVO";1
+"103";"Zona da Mata Norte - PB";"ZONA DA MATA NORTE - PB";"ATIVO";1
+"104";"Zona Sul do Estado - RS";"ZONA SUL DO ESTADO - RS";"ATIVO";1
+"105";"Sul Sergipano - SE";"SUL SERGIPANO - SE";"ATIVO";1
+"106";"Vale do Juruá - AC";"VALE DO JURUA - AC";"ATIVO";1
+"107";"Jalapão - TO";"JALAPAO - TO";"ATIVO";1
+"111";"Sul do Amapá - AP";"SUL DO AMAPA - AP";"ATIVO";1
+"112";"Lagos - AP";"LAGOS - AP";"ATIVO";1
+"114";"BR 163 - PA";"BR 163 - PA";"ATIVO";1
+"115";"Baixada Ocidental - MA";"BAIXADA OCIDENTAL - MA";"ATIVO";1
+"117";"Baixo Jequitinhonha - MG";"BAIXO JEQUITINHONHA - MG";"ATIVO";1
+"118";"Itaparica - BA/PE";"ITAPARICA - BA/PE";"ATIVO";1
+"119";"Madeira - AM";"MADEIRA - AM";"ATIVO";1
+"120";"Zona da Mata Sul - PB";"ZONA DA MATA SUL - PB";"ATIVO";1
+"121";"Chapada dos Veadeiros - GO";"CHAPADA DOS VEADEIROS - GO";"ATIVO";1
+"122";"Terra Indíg Raposa S. do Sol S.Marcos - RR";"TERRA INDIG RAPOSA S. DO SOL S.MARCOS - RR";"ATIVO";1
+"123";"Potengi - RN";"POTENGI - RN";"ATIVO";1
+"124";"Sudeste - TO";"SUDESTE - TO";"ATIVO";1
+"125";"Vale do Paranã - GO";"VALE DO PARANA - GO";"ATIVO";1
+"126";"Mata Alagoana - AL";"MATA ALAGOANA - AL";"ATIVO";1
+"127";"Vale do Ivinhema - MS";"VALE DO IVINHEMA - MS";"ATIVO";1
+"129";"Marajó - PA";"MARAJO - PA";"ATIVO";1
+"130";"Baixo Tocantins - PA";"BAIXO TOCANTINS - PA";"ATIVO";1
+"131";"Carirí - CE";"CARIRI - CE";"ATIVO";1
+"133";"Vale do Canindé - PI";"VALE DO CANINDE - PI";"ATIVO";1
+"134";"Alto Oeste - RN";"ALTO OESTE - RN";"ATIVO";1
+"135";"Baixo São Francisco - SE";"BAIXO SAO FRANCISCO - SE";"ATIVO";1
+"136";"Rio Negro da Cidadania Indígena - AM";"RIO NEGRO DA CIDADANIA INDIGENA - AM";"ATIVO";1
+"139";"Alto Turi e Gurupi - MA";"ALTO TURI E GURUPI - MA";"ATIVO";1
+"140";"Médio Mearim - MA";"MEDIO MEARIM - MA";"ATIVO";1
+"141";"Campo e Lagos - MA";"CAMPO E LAGOS - MA";"ATIVO";1
+"143";"Sertão do São Francisco - BA";"SERTAO DO SAO FRANCISCO - BA";"ATIVO";1
+"146";"Norte Pioneiro - PR";"NORTE PIONEIRO - PR";"ATIVO";1
+"147";"Noroeste Colonial - RS";"NOROESTE COLONIAL - RS";"ATIVO";1
+"160";"Curimataú - PB";"CURIMATAU - PB";"ATIVO";1
+"161";"Cocais - PI";"COCAIS - PI";"ATIVO";1
+"162";"Semiárido Nordeste II - BA";"SEMIARIDO NORDESTE II - BA";"ATIVO";1
+"163";"Noroeste - MT";"NOROESTE - MT";"ATIVO";1
+"165";"Mesorregião Alto Solimôes - AM";"MESORREGIAO ALTO SOLIMOES - AM";"ATIVO";1
+"900";"Outros municípios - ignorados";"OUTROS MUNICIPIOS - IGNORADO";"OUTROS";5
+"911";"Outros municípios - RO";"OUTROS MUNICIPIOS - RO";"OUTROS";5
+"912";"Outros municípios - AC";"OUTROS MUNICIPIOS - AC";"OUTROS";5
+"913";"Outros municípios - AM";"OUTROS MUNICIPIOS - AM";"OUTROS";5
+"914";"Outros municípios - RR";"OUTROS MUNICIPIOS - RR";"OUTROS";5
+"915";"Outros municípios - PA";"OUTROS MUNICIPIOS - PA";"OUTROS";5
+"916";"Outros municípios - AP";"OUTROS MUNICIPIOS - AP";"OUTROS";5
+"917";"Outros municípios - TO";"OUTROS MUNICIPIOS - TO";"OUTROS";5
+"921";"Outros municípios - MA";"OUTROS MUNICIPIOS - MA";"OUTROS";5
+"922";"Outros municípios - PI";"OUTROS MUNICIPIOS - PI";"OUTROS";5
+"923";"Outros municípios - CE";"OUTROS MUNICIPIOS - CE";"OUTROS";5
+"924";"Outros municípios - RN";"OUTROS MUNICIPIOS - RN";"OUTROS";5
+"925";"Outros municípios - PB";"OUTROS MUNICIPIOS - PB";"OUTROS";5
+"926";"Outros municípios - PE";"OUTROS MUNICIPIOS - PE";"OUTROS";5
+"927";"Outros municípios - AL";"OUTROS MUNICIPIOS - AL";"OUTROS";5
+"928";"Outros municípios - SE";"OUTROS MUNICIPIOS - SE";"OUTROS";5
+"929";"Outros municípios - BA";"OUTROS MUNICIPIOS - BA";"OUTROS";5
+"931";"Outros municípios - MG";"OUTROS MUNICIPIOS - MG";"OUTROS";5
+"932";"Outros municípios - ES";"OUTROS MUNICIPIOS - ES";"OUTROS";5
+"933";"Outros municípios - RJ";"OUTROS MUNICIPIOS - RJ";"OUTROS";5
+"935";"Outros municípios - SP";"OUTROS MUNICIPIOS - SP";"OUTROS";5
+"941";"Outros municípios - PR";"OUTROS MUNICIPIOS - PR";"OUTROS";5
+"942";"Outros municípios - SC";"OUTROS MUNICIPIOS - SC";"OUTROS";5
+"943";"Outros municípios - RS";"OUTROS MUNICIPIOS - RS";"OUTROS";5
+"950";"Outros municípios - MS";"OUTROS MUNICIPIOS - MS";"OUTROS";5
+"951";"Outros municípios - MT";"OUTROS MUNICIPIOS - MT";"OUTROS";5
+"952";"Outros municípios - GO";"OUTROS MUNICIPIOS - GO";"OUTROS";5
+"953";"Outros municípios - DF";"OUTROS MUNICIPIOS - DF";"OUTROS";5

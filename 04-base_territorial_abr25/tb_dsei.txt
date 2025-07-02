@@ -1,0 +1,34 @@
+001Alagoas e Sergipe - AL/SE                 ALAGOAS E SERGIPE - AL/SE                 270430
+002Altamira - PA                             ALTAMIRA - PA                             150060
+003Alto Rio Juruá - AC                       ALTO RIO JURUA - AC                       120020
+004Alto Rio Negro - AM                       ALTO RIO NEGRO - AM                       130380
+005Alto Rio Purus - RO/AC/AM                 ALTO RIO PURUS - RO/AC/AM                 120040
+006Alto Rio Solimões - AM                    ALTO RIO SOLIMOES - AM                    130406
+007Amapá e Norte do Pará - AP/PA             AMAPA E NORTE DO PARA - AP/PA             160030
+008Araguaia - TO/MT/GO                       ARAGUAIA - TO/MT/GO                       510785
+009Bahia - BA                                BAHIA - BA                                292740
+010Ceará - CE                                CEARA - CE                                230440
+011Cuiabá - MT                               CUIABA - MT                               510340
+012Guamá-Tocantins - PA/MA                   GUAMA-TOCANTINS - PA/MA                   150140
+013Interior Sul - SP/PR/SC/RS                INTERIOR SUL - SP/PR/SC/RS                420420
+014Kayapó do Mato Grosso - PA/MT             KAYAPO DO MATO GROSSO - PA/MT             510320
+015Kayapó do Pará - PA                       KAYAPO DO PARA - PA                       150613
+016Leste de Roraima - RR                     LESTE DE RORAIMA - RR                     140010
+017Litoral Sul - RJ/SP/PR/SC/RS              LITORAL SUL - RJ/SP/PR/SC/RS              410690
+018Manaus - AM                               MANAUS - AM                               130260
+019Maranhão - MA                             MARANHAO - MA                             211130
+020Mato Grosso do Sul - MS                   MATO GROSSO DO SUL - MS                   500270
+021Médio Rio Purus - AM                      MEDIO RIO PURUS - AM                      130240
+022Médio Rio Solimões e Afluentes - AM       MEDIO RIO SOLIMOES E AFLUENTES - AM       130420
+023Minas Gerais e Espírito Santo - MG/ES     MINAS GERAIS E ESPIRITO SANTO - MG/ES     312770
+024Parintins - AM/PA                         PARINTINS - AM/PA                         130340
+025Xingu - MT                                XINGU - MT                                510270
+026Pernambuco - PE                           PERNAMBUCO - PE                           261160
+027Porto Velho - RO/AM/MT                    PORTO VELHO - RO/AM/MT                    110020
+028Potiguara - PB                            POTIGUARA - PB                            250750
+029Rio Tapajós - PA                          RIO TAPAJOS - PA                          150360
+030Tocantins - TO                            TOCANTINS - TO                            172100
+031Vale do Rio Javari - AM                   VALE DO RIO JAVARI - AM                   130020
+032Vilhena - RO/MT                           VILHENA - RO/MT                           110030
+033Xavante - MT                              XAVANTE - MT                              510180
+034Ianomâmi - AM/RR                          IANOMAMI - AM/RR                          140010
