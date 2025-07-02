@@ -1,10 +1,3 @@
-### Como Usar:
-
-1.  **Salve as Imagens:** Certifique-se de que todos os arquivos de imagem (`mapa_tmi_to_2022.png`, `grafico_correlacao.png`, `kmeans_maps_k3_vs_k4.png`, etc.) estejam na raiz do seu repositório ou em uma pasta de imagens.
-2.  **Copie e Cole:** Substitua o conteúdo do seu `README.md` pelo texto abaixo.
-
----
-
 # Análise de Indicadores de Saúde e Clusterização de Municípios Brasileiros
 
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)
