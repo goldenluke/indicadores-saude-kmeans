@@ -1,0 +1,8 @@
+pandas
+numpy
+pysus
+geopandas
+matplotlib
+seaborn
+scikit-learn
+xlrd
