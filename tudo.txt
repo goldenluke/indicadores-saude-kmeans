@@ -1,0 +1,1100 @@
+Q# -*- coding: utf-8 -*-
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from pysus.online_data.SINASC import download as download_sinasc
+from utils.mapas import gerar_mapa_indicador
+import argparse
+
+def calcular_cobertura_prenatal_multiplos_uf_anos(
+    ufs=['TO'], anos=[2022],
+    arquivo_populacao="populacao_brasil_censo_2022_com_estado.csv"
+):
+    """
+    Calcula a cobertura de pré-natal adequado (7+ consultas) para várias UFs e anos,
+    gerando também mapas por UF/ano.
+
+    Parâmetros:
+    - ufs (list): Lista de siglas de UFs, ex: ['TO','MG']
+    - anos (list): Lista de anos, ex: [2021,2022]
+    - arquivo_populacao (str ou dict ou pd.DataFrame): CSV ou dict ano->CSV ou DataFrame já carregado.
+
+    Retorna:
+    - DataFrame com colunas:
+      ['UF','ANO','cod_mun_ibge_6','municipio','populacao',
+       'total_nascimentos','prenatal_7mais','COBERTURA_PRENATAL']
+    """
+    resultados = []
+
+    for uf in ufs:
+        for ano in anos:
+            print(f"\n=== Cobertura Pré-Natal: {uf}/{ano} ===")
+            # 0: carregar população
+            try:
+                if isinstance(arquivo_populacao, str):
+                    df_pop = pd.read_csv(arquivo_populacao, sep=';', dtype={'cod_mun_ibge_6': str})
+                    df_pop_ano = df_pop[df_pop['UF'] == uf].copy()  # Ajuste aqui se quiser filtrar ano
+                elif isinstance(arquivo_populacao, dict):
+                    df_pop_ano = pd.read_csv(arquivo_populacao[ano], sep=';', dtype={'cod_mun_ibge_6': str})
+                    df_pop_ano = df_pop_ano[df_pop_ano['UF'] == uf].copy()
+                elif isinstance(arquivo_populacao, pd.DataFrame):
+                    if 'ANO' in arquivo_populacao.columns:
+                        df_pop_ano = arquivo_populacao[(arquivo_populacao['UF'] == uf) & (arquivo_populacao['ANO'] == ano)].copy()
+                    else:
+                        df_pop_ano = arquivo_populacao[arquivo_populacao['UF'] == uf].copy()
+                else:
+                    raise ValueError("Parâmetro 'arquivo_populacao' inválido")
+
+                df_base = df_pop_ano.set_index('cod_mun_ibge_6')
+            except Exception as e:
+                print(f"Erro ao carregar população para {uf}/{ano}: {e}")
+                continue
+
+            # 1: baixar SINASC
+            try:
+                sin = download_sinasc(states=uf, years=ano, groups=["DN"])
+                if isinstance(sin, list):
+                    df_sin = pd.concat([f.to_dataframe() for f in sin], ignore_index=True)
+                else:
+                    df_sin = sin.to_dataframe()
+            except Exception as e:
+                print(f"Erro SINASC {uf}/{ano}: {e}")
+                continue
+
+            # 2: total nascimentos e pré-natal ≥7 (CONSULTAS=='4')
+            tot = (
+                df_sin.groupby("CODMUNRES")
+                .size()
+                .rename("total_nascimentos")
+            )
+            tot.index = tot.index.astype(str).str[:6]
+
+            pr7 = (
+                df_sin[df_sin['CONSULTAS'].astype(str)=='4']
+                .groupby("CODMUNRES")
+                .size()
+                .rename("prenatal_7mais")
+            )
+            pr7.index = pr7.index.astype(str).str[:6]
+
+            # 3: juntar e calcular
+            df = (
+                df_base.join(tot, how="left")
+                       .join(pr7, how="left")
+                       .fillna(0)
+            )
+            df['total_nascimentos']   = df['total_nascimentos'].astype(int)
+            df['prenatal_7mais']      = df['prenatal_7mais'].astype(int)
+            df['COBERTURA_PRENATAL']  = df.apply(
+                lambda r: (r.prenatal_7mais/r.total_nascimentos*100)
+                          if r.total_nascimentos>0 else 0,
+                axis=1
+            )
+            df['UF'], df['ANO'] = uf, ano
+            resultados.append(df.reset_index())
+
+            # 4: gerar mapa
+            gerar_mapa_indicador(
+                df=df,  # DataFrame com índice 'cod_mun_ibge_6'
+                uf=uf,
+                ano=ano,
+                coluna_valor="COBERTURA_PRENATAL",
+                legenda="Cobertura de Pré-Natal Adequado (7+ consultas) (%)",
+                cmap="Greens",
+                nome_arquivo=f"cobertura_prenatal_{uf}_{ano}"
+            )
+
+    if resultados:
+        df_final = pd.concat(resultados, ignore_index=True)
+        print("\n✅ Cobertura de pré-natal calculada com sucesso para todos os estados/anos.")
+        return df_final
+    else:
+        print("⚠️ Nenhum dado processado.")
+        return pd.DataFrame()
+
+
+if __name__ == "__main__":
+
+
+    parser = argparse.ArgumentParser(description="Calcula cobertura de pré-natal adequado (7+ consultas).")
+    parser.add_argument("--ufs", nargs="+", default=["TO"], help="Lista de UFs, ex: TO GO MG")
+    parser.add_argument("--anos", nargs="+", type=int, default=[2021, 2022], help="Lista de anos")
+    parser.add_argument("--pop", type=str, default="populacao_brasil_censo_2022_com_estado.csv", help="Arquivo de população")
+    parser.add_argument("--saida", type=str, default="cobertura_prenatal_multiplos_estados_anos.csv", help="Arquivo de saída")
+
+    args = parser.parse_args()
+
+    df = calcular_cobertura_prenatal_multiplos_uf_anos(args.ufs, args.anos, args.pop)
+
+    if not df.empty:
+        df.to_csv(args.saida, sep=";", index=False)
+        print(f"\n📄 CSV salvo: {args.saida}")
+    else:
+        print("⚠️ Nenhum dado processado.")
+
+# -*- coding: utf-8 -*-
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from pysus.online_data.SINASC import download as download_sinasc
+from utils.mapas import gerar_mapa_indicador
+import argparse
+
+def calcular_prop_partos_cesareos_multiplos_uf_anos(
+    ufs=['TO'], anos=[2022],
+    arquivo_populacao="populacao_brasil_censo_2022_com_estado.csv"
+):
+    """
+    Calcula a proporção de partos cesáreos (%) para múltiplas UFs e anos,
+    gerando também mapas por UF/ano.
+
+    Parâmetros:
+    - ufs (list): Lista de siglas de UFs (ex: ['TO', 'MG'])
+    - anos (list): Lista de anos (ex: [2021, 2022])
+    - arquivo_populacao (str): Caminho para o CSV com população municipal
+
+    Retorna:
+    - DataFrame com colunas:
+      ['UF','ANO','cod_mun_ibge_6','municipio','populacao',
+       'total_nascimentos','partos_cesareos','PROP_CESAREOS']
+    """
+    resultados = []
+
+    for uf in ufs:
+        for ano in anos:
+            print(f"\n=== Processando {uf} / {ano} ===")
+
+            # carrega população e filtra UF
+            try:
+                if isinstance(arquivo_populacao, str):
+                    df_pop = pd.read_csv(arquivo_populacao, sep=';', dtype={'cod_mun_ibge_6': str})
+                    # Remova o filtro por ano se seu CSV não tem essa coluna
+                    df_pop_ano = df_pop[df_pop['UF'] == uf].copy()
+                elif isinstance(arquivo_populacao, dict):
+                    df_pop_ano = pd.read_csv(arquivo_populacao[ano], sep=';', dtype={'cod_mun_ibge_6': str})
+                    df_pop_ano = df_pop_ano[df_pop_ano['UF'] == uf].copy()
+                elif isinstance(arquivo_populacao, pd.DataFrame):
+                    # Se sua DataFrame tem ANO, filtra, senão filtra só por UF
+                    if 'ANO' in arquivo_populacao.columns:
+                        df_pop_ano = arquivo_populacao[(arquivo_populacao['UF'] == uf) & (arquivo_populacao['ANO'] == ano)].copy()
+                    else:
+                        df_pop_ano = arquivo_populacao[arquivo_populacao['UF'] == uf].copy()
+                else:
+                    raise ValueError("Parâmetro 'arquivo_populacao' inválido")
+
+                df_base = df_pop_ano.set_index('cod_mun_ibge_6')
+            except Exception as e:
+                print(f"Erro ao carregar população para {uf}/{ano}: {e}")
+                continue
+
+            # SINASC: nascidos vivos
+            try:
+                sinasc = download_sinasc(states=uf, years=ano, groups=["DN"])
+                if isinstance(sinasc, list):
+                    df_sin = pd.concat(
+                        [f.to_dataframe() for f in sinasc], ignore_index=True
+                    )
+                else:
+                    df_sin = sinasc.to_dataframe()
+            except Exception as e:
+                print(f"⚠️ Erro SINASC {uf}/{ano}: {e}")
+                continue
+
+            # total de nascimentos por município
+            tot = (
+                df_sin.groupby("CODMUNRES")
+                .size()
+                .rename("total_nascimentos")
+            )
+            tot.index = tot.index.astype(str).str[:6]
+
+            # partos cesáreos: PARTO == '2'
+            ces = (
+                df_sin[df_sin['PARTO'].astype(str) == '2']
+                .groupby("CODMUNRES")
+                .size()
+                .rename("partos_cesareos")
+            )
+            ces.index = ces.index.astype(str).str[:6]
+
+            # junta e calcula proporção
+            df = (
+                df_base
+                .join(tot, how="left")
+                .join(ces, how="left")
+                .fillna(0)
+            )
+            df['total_nascimentos'] = df['total_nascimentos'].astype(int)
+            df['partos_cesareos']    = df['partos_cesareos'].astype(int)
+            df['PROP_CESAREOS'] = df.apply(
+                lambda r: (r.partos_cesareos / r.total_nascimentos * 100)
+                          if r.total_nascimentos > 0 else 0,
+                axis=1
+            )
+
+            df['UF'], df['ANO'] = uf, ano
+            resultados.append(df.reset_index())
+
+            # gera mapa
+        gerar_mapa_indicador(
+            df=df,
+            uf=uf,
+            ano=ano,
+            coluna_valor='PROP_CESAREOS',
+            legenda='Proporção de Partos Cesáreos (%)',
+            cmap='Blues',
+            nome_arquivo='prop_cesareos',
+        )
+
+
+
+    if resultados:
+        df_final = pd.concat(resultados, ignore_index=True)
+        print("\n✅ Proporção de cesáreos calculada para todos os estados/anos.")
+        return df_final
+    else:
+        print("⚠️ Nenhum dado processado.")
+        return pd.DataFrame()
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Calcula a proporção de partos cesáreos por UF e ano.")
+    parser.add_argument("--ufs", nargs="+", default=["TO"], help="Lista de UFs, ex: TO GO MG")
+    parser.add_argument("--anos", nargs="+", type=int, default=[2021, 2022], help="Lista de anos")
+    parser.add_argument("--pop", type=str, default="populacao_brasil_censo_2022_com_estado.csv", help="Arquivo CSV com população municipal")
+    parser.add_argument("--saida", type=str, default="prop_cesareos_multiplos_estados_anos.csv", help="Arquivo CSV de saída")
+
+    args = parser.parse_args()
+
+    df_prop = calcular_prop_partos_cesareos_multiplos_uf_anos(args.ufs, args.anos, args.pop)
+
+    if not df_prop.empty:
+        df_prop.to_csv(args.saida, sep=';', index=False)
+        print(f"\n📄 CSV salvo: '{args.saida}'")
+    else:
+        print("⚠️ Nenhum resultado para salvar.")
+
+# -*- coding: utf-8 -*-
+import pandas as pd
+import numpy as np
+from pysus.online_data.SIM import download as download_sim
+from pysus.online_data.SINASC import download as download_sinasc
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from utils.mapas import gerar_mapa_indicador
+
+def calcular_tmi_multiplos_uf_anos(ufs=['TO'], anos=[2022], arquivo_populacao="populacao_brasil_censo_2022_com_estado.csv"):
+    """
+    Calcula a Taxa de Mortalidade Infantil (TMI) para múltiplos estados e anos,
+    gerando também mapas por UF/ano.
+
+    Parâmetros:
+    - ufs (list): Lista de siglas de UFs (ex: ['TO', 'MG'])
+    - anos (list): Lista de anos (ex: [2021, 2022])
+    - arquivo_populacao (str): Caminho para o CSV com população municipal
+
+    Retorna:
+    - DataFrame com colunas: ['UF','ANO','cod_mun_ibge_6','municipio','populacao','obitos_infantis','nascidos_vivos','TMI']
+    """
+    resultados = []
+    for uf in ufs:
+        for ano in anos:
+            print(f"\n=== Processando {uf} / {ano} ===")
+
+            # carrega população e filtra UF
+            try:
+                if isinstance(arquivo_populacao, str):
+                    df_pop = pd.read_csv(arquivo_populacao, sep=';', dtype={'cod_mun_ibge_6': str})
+                    # Remova o filtro por ano se seu CSV não tem essa coluna
+                    df_pop_ano = df_pop[df_pop['UF'] == uf].copy()
+                elif isinstance(arquivo_populacao, dict):
+                    df_pop_ano = pd.read_csv(arquivo_populacao[ano], sep=';', dtype={'cod_mun_ibge_6': str})
+                    df_pop_ano = df_pop_ano[df_pop_ano['UF'] == uf].copy()
+                elif isinstance(arquivo_populacao, pd.DataFrame):
+                    # Se sua DataFrame tem ANO, filtra, senão filtra só por UF
+                    if 'ANO' in arquivo_populacao.columns:
+                        df_pop_ano = arquivo_populacao[(arquivo_populacao['UF'] == uf) & (arquivo_populacao['ANO'] == ano)].copy()
+                    else:
+                        df_pop_ano = arquivo_populacao[arquivo_populacao['UF'] == uf].copy()
+                else:
+                    raise ValueError("Parâmetro 'arquivo_populacao' inválido")
+
+                df_base = df_pop_ano.set_index('cod_mun_ibge_6')
+            except Exception as e:
+                print(f"Erro ao carregar população para {uf}/{ano}: {e}")
+                continue
+
+            # --- SIM: óbitos infantis ---
+            try:
+                sim_files = download_sim(states=uf, years=ano, groups=["CID10"])
+                df_sim = sim_files.to_dataframe()
+                df_sim["IDADE"] = pd.to_numeric(df_sim["IDADE"], errors="coerce")
+                df_inf = df_sim[df_sim["IDADE"] < 401]
+                obitos = df_inf.groupby("CODMUNRES").size().rename("obitos_infantis")
+                obitos.index = obitos.index.astype(str).str[:6]
+            except Exception as e:
+                print(f"⚠️ Erro SIM {uf}/{ano}: {e}")
+                obitos = pd.Series(dtype=int)
+
+            # --- SINASC: nascidos vivos ---
+            try:
+                sinasc_files = download_sinasc(states=uf, years=ano, groups=["DN"])
+                if isinstance(sinasc_files, list):
+                    df_sin = pd.concat([f.to_dataframe() for f in sinasc_files], ignore_index=True)
+                elif hasattr(sinasc_files, "to_dataframe"):
+                    df_sin = sinasc_files.to_dataframe()
+                else:
+                    df_sin = pd.DataFrame(columns=["CODMUNRES"])
+                nascidos = df_sin.groupby("CODMUNRES").size().rename("nascidos_vivos")
+                nascidos.index = nascidos.index.astype(str).str[:6]
+            except Exception as e:
+                print(f"⚠️ Erro SINASC {uf}/{ano}: {e}")
+                nascidos = pd.Series(dtype=int)
+
+            # junta e calcula TMI
+            df_base = df_base.join(obitos, how="left") \
+                             .join(nascidos, how="left") \
+                             .fillna(0)
+            df_base['obitos_infantis'] = df_base['obitos_infantis'].astype(int)
+            df_base['nascidos_vivos']   = df_base['nascidos_vivos'].astype(int)
+            df_base['TMI'] = df_base.apply(
+                lambda r: (r['obitos_infantis']/r['nascidos_vivos']*1000) if r['nascidos_vivos']>0 else 0,
+                axis=1
+            )
+
+            df_base['UF']  = uf
+            df_base['ANO'] = ano
+            resultados.append(df_base.reset_index())
+
+            # gera mapa
+            gerar_mapa_indicador(
+                df=df_base,
+                uf=uf,
+                ano=ano,
+                coluna_valor="TMI",
+                legenda="TMI (por mil nascidos vivos)",
+                cmap="Reds",
+                nome_arquivo="tmi"
+            )
+
+    if resultados:
+        df_final = pd.concat(resultados, ignore_index=True)
+        print("\n✅ TMI calculada para todos os estados/anos.")
+        return df_final
+    else:
+        print("⚠️ Nenhum dado processado.")
+        return pd.DataFrame()
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Calcula a Taxa de Mortalidade Infantil (TMI) por UF e ano.")
+    parser.add_argument("--ufs", nargs="+", default=["TO", "GO"], help="Lista de UFs, ex: TO GO MG")
+    parser.add_argument("--anos", nargs="+", type=int, default=[2021, 2022], help="Lista de anos")
+    parser.add_argument("--pop", type=str, default="populacao_brasil_censo_2022_com_estado.csv", help="Arquivo CSV com população municipal")
+    parser.add_argument("--saida", type=str, default="tmi_multiplos_estados_anos.csv", help="Arquivo CSV de saída")
+
+    args = parser.parse_args()
+
+    df_tmi = calcular_tmi_multiplos_uf_anos(args.ufs, args.anos, args.pop)
+
+    if not df_tmi.empty:
+        df_tmi.to_csv(args.saida, index=False, sep=';')
+        print(f"\n📄 CSV salvo: '{args.saida}'")
+    else:
+        print("⚠️ Nenhum resultado para salvar.")
+# -*- coding: utf-8 -*-
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from pysus.online_data.CNES import CNES
+from utils.mapas import gerar_mapa_indicador
+import argparse
+
+def calcular_medicos_por_mil(ufs=['TO'], anos=[2022], meses=None,
+                             arquivo_populacao="populacao_brasil_censo_2022_com_estado.csv"):
+    """
+    Calcula a taxa de médicos por 1.000 habitantes para múltiplas UFs, anos e meses,
+    gerando também mapas por UF/ano/mês.
+
+    Parâmetros:
+    - ufs (list): Lista de siglas de UFs (ex: ['TO', 'MG'])
+    - anos (list): Lista de anos (ex: [2021, 2022])
+    - meses (list): Lista de meses (1–12). Se None ou vazio, usa ano inteiro.
+    - arquivo_populacao (str): Caminho para o CSV com população municipal
+
+    Retorna:
+    - DataFrame com colunas: [
+        'UF','ANO','MES','cod_mun_ibge_6','municipio','populacao',
+        'n_medicos','TAXA_MEDICOS'
+      ]
+    """
+    resultados = []
+    cnes_db = CNES()
+    cnes_db.load()
+
+    processar_por_mes = bool(meses) and len(meses) > 0
+
+    for uf in ufs:
+        for ano in anos:
+            meses_iterar = meses if processar_por_mes else [None]
+
+            for mes in meses_iterar:
+                if mes is None:
+                    print(f"\n=== Processando {uf} / {ano} (ano inteiro) ===")
+                    meses_validos = list(range(1, 13))
+                else:
+                    print(f"\n=== Processando {uf} / {ano} (mês {mes}) ===")
+                    meses_validos = [mes]
+
+                dfs_cnes_mes = []
+
+                for m in meses_validos:
+                    try:
+                        files = cnes_db.get_files(group='PF', uf=uf, year=ano, month=m)
+                        if not files:
+                            print(f"⚠️ Nenhum arquivo CNES encontrado para {uf}/{ano}/{m:02d}")
+                            continue
+                        df_mes = cnes_db.download(files).to_dataframe()
+                        dfs_cnes_mes.append(df_mes)
+                    except Exception as e:
+                        print(f"⚠️ Erro CNES {uf}/{ano}/{m}: {e}")
+                        continue
+
+                if not dfs_cnes_mes:
+                    continue
+
+                df_cnes = pd.concat(dfs_cnes_mes, ignore_index=True)
+
+                # Carrega população e filtra UF
+                try:
+                    if isinstance(arquivo_populacao, str):
+                        df_pop = pd.read_csv(arquivo_populacao, sep=';', dtype={'cod_mun_ibge_6': str})
+                        df_pop_ano = df_pop[df_pop['UF'] == uf].copy()
+                    elif isinstance(arquivo_populacao, dict):
+                        df_pop_ano = pd.read_csv(arquivo_populacao[ano], sep=';', dtype={'cod_mun_ibge_6': str})
+                        df_pop_ano = df_pop_ano[df_pop_ano['UF'] == uf].copy()
+                    elif isinstance(arquivo_populacao, pd.DataFrame):
+                        if 'ANO' in arquivo_populacao.columns:
+                            df_pop_ano = arquivo_populacao[(arquivo_populacao['UF'] == uf) & (arquivo_populacao['ANO'] == ano)].copy()
+                        else:
+                            df_pop_ano = arquivo_populacao[arquivo_populacao['UF'] == uf].copy()
+                    else:
+                        raise ValueError("Parâmetro 'arquivo_populacao' inválido")
+
+                    df_base = df_pop_ano.set_index('cod_mun_ibge_6')
+                except Exception as e:
+                    print(f"Erro ao carregar população para {uf}/{ano}: {e}")
+                    continue
+
+                if 'CBO' not in df_cnes.columns or 'CPFUNICO' not in df_cnes.columns:
+                    print("⚠️ Colunas CBO ou CPFUNICO ausentes.")
+                    continue
+
+                # filtra médicos (CBO 225)
+                df_med = df_cnes[df_cnes['CBO'].astype(str).str.startswith('225')]
+                contagem = (
+                    df_med.groupby('CODUFMUN')['CPFUNICO']
+                    .nunique()
+                    .rename('n_medicos')
+                )
+                contagem.index = contagem.index.astype(str)
+
+                df = (
+                    df_base
+                    .join(contagem, how='left')
+                    .fillna({'n_medicos': 0})
+                )
+                df['n_medicos'] = df['n_medicos'].astype(int)
+                df['TAXA_MEDICOS'] = df.apply(
+                    lambda r: (r['n_medicos'] / r['populacao']) * 1000 if r['populacao'] > 0 else 0,
+                    axis=1
+                )
+
+                df['UF'], df['ANO'] = uf, ano
+                df['MES'] = mes if mes is not None else 0
+
+                resultados.append(df.reset_index())
+
+                try:
+                    sufixo = f"_{mes:02d}" if mes is not None else "_ano_inteiro"
+                    gerar_mapa_indicador(
+                        df=df,
+                        uf=uf,
+                        ano=ano,
+                        coluna_valor="TAXA_MEDICOS",
+                        legenda="Médicos por 1.000 hab.",
+                        cmap="Reds",
+                        nome_arquivo=f"taxa_medicos_{uf}_{ano}{sufixo}",
+                        title=f"{uf} – Médicos/1 000 hab. ({ano}{'' if mes is None else f'-{mes}'})"
+                    )
+                except Exception as e:
+                    print(f"Erro ao gerar mapa para {uf}/{ano}{'' if mes is None else f'/{mes}'}: {e}")
+
+    if resultados:
+        df_final = pd.concat(resultados, ignore_index=True)
+        print("\n✅ Médicos por mil calculado com sucesso.")
+        return df_final
+    else:
+        print("⚠️ Nenhum dado processado.")
+        return pd.DataFrame()
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Calcula a taxa de médicos por mil habitantes por UF, ano e meses.")
+    parser.add_argument("--ufs", nargs="+", default=["TO"], help="Lista de UFs, ex: TO GO MG")
+    parser.add_argument("--anos", nargs="+", type=int, default=[2021, 2022], help="Lista de anos")
+    parser.add_argument("--meses", nargs="*", type=int, default=None, help="Lista de meses (1–12). Se não informado, agrega o ano inteiro")
+    parser.add_argument("--pop", type=str, default="populacao_brasil_censo_2022_com_estado.csv", help="Arquivo CSV com população municipal")
+    parser.add_argument("--saida", type=str, default="medicos_por_mil_multiplos_estados_anos.csv", help="Arquivo CSV de saída")
+
+    args = parser.parse_args()
+
+    df_med = calcular_medicos_por_mil(args.ufs, args.anos, args.meses, args.pop)
+
+    if not df_med.empty:
+        df_med.to_csv(args.saida, sep=';', index=False)
+        print(f"\n📄 CSV salvo: '{args.saida}'")
+    else:
+        print("⚠️ Nenhum resultado para salvar.")
+# -*- coding: utf-8 -*-
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from pysus.online_data.SIH import SIH
+from utils.mapas import gerar_mapa_indicador
+import argparse
+
+def calcular_internacoes_cronicas_por_10mil(
+    ufs=['TO'],
+    anos=[2022],
+    meses=None,  # pode ser None ou lista vazia
+    arquivo_populacao="populacao_brasil_censo_2022_com_estado.csv"
+):
+    """
+    Calcula o indicador de internações por doenças crônicas para múltiplas UFs, anos e meses.
+
+    Parâmetros:
+    - ufs (list): Lista de siglas de estados.
+    - anos (list): Lista de anos.
+    - meses (list ou None): Lista de meses a serem processados. Se None ou vazio, processa o ano inteiro.
+    - arquivo_populacao (str): Caminho para o CSV com dados populacionais.
+
+    Retorna:
+    - DataFrame combinado com os indicadores calculados.
+    """
+    DOENCAS_CID10 = ["I10", "I11", "I12", "I13", "I15", "E10", "E11", "E12", "E13", "E14", "J45", "J46"]
+    df_resultados = []
+
+    # Se meses for None ou vazio, processa o ano inteiro como um único grupo
+    processar_por_mes = bool(meses) and len(meses) > 0
+
+    for uf in ufs:
+        for ano in anos:
+            meses_iterar = meses if processar_por_mes else [None]
+
+            for mes in meses_iterar:
+                if mes is None:
+                    print(f"\n=== Processando {uf} / {ano} (ano inteiro) ===")
+                else:
+                    print(f"\n=== Processando {uf} / {ano} (mês {mes:02d}) ===")
+
+                # Carrega população e filtra UF (e ano, se disponível)
+                try:
+                    if isinstance(arquivo_populacao, str):
+                        df_pop = pd.read_csv(arquivo_populacao, sep=';', dtype={'cod_mun_ibge_6': str})
+                        if 'ANO' in df_pop.columns:
+                            df_pop_ano = df_pop[(df_pop['UF'] == uf) & (df_pop['ANO'] == ano)].copy()
+                        else:
+                            df_pop_ano = df_pop[df_pop['UF'] == uf].copy()
+                    elif isinstance(arquivo_populacao, dict):
+                        df_pop_ano = pd.read_csv(arquivo_populacao[ano], sep=';', dtype={'cod_mun_ibge_6': str})
+                        df_pop_ano = df_pop_ano[df_pop_ano['UF'] == uf].copy()
+                    elif isinstance(arquivo_populacao, pd.DataFrame):
+                        if 'ANO' in arquivo_populacao.columns:
+                            df_pop_ano = arquivo_populacao[(arquivo_populacao['UF'] == uf) & (arquivo_populacao['ANO'] == ano)].copy()
+                        else:
+                            df_pop_ano = arquivo_populacao[arquivo_populacao['UF'] == uf].copy()
+                    else:
+                        raise ValueError("Parâmetro 'arquivo_populacao' inválido")
+
+                    df_base = df_pop_ano.set_index('cod_mun_ibge_6')
+                except Exception as e:
+                    print(f"Erro ao carregar população para {uf}/{ano}: {e}")
+                    continue
+
+                # Carrega dados do SIH para o mês e ano especificados
+                try:
+                    sih = SIH()
+                    sih.load()
+                    files = sih.get_files(group='RD', uf=uf, year=ano, month=mes)
+                    if not files:
+                        if mes is None:
+                            print(f"Nenhum arquivo SIH encontrado para {uf}/{ano} (ano inteiro)")
+                        else:
+                            print(f"Nenhum arquivo SIH encontrado para {uf}/{ano}/{mes:02d}")
+                        continue
+
+                    parquet_set = sih.download(files)
+                    df_sih = pd.concat([p.to_dataframe() for p in parquet_set], ignore_index=True)
+                except Exception as e:
+                    if mes is None:
+                        print(f"Erro ao carregar dados do SIH para {uf}/{ano} (ano inteiro): {e}")
+                    else:
+                        print(f"Erro ao carregar dados do SIH para {uf}/{ano}/{mes:02d}: {e}")
+                    continue
+
+                # Verifica coluna DIAG_PRINC
+                if "DIAG_PRINC" not in df_sih.columns:
+                    print("Coluna DIAG_PRINC não encontrada no SIH.")
+                    continue
+
+                # Filtra internações por doenças crônicas
+                df_cronicas = df_sih[df_sih["DIAG_PRINC"].astype(str).str[:3].isin([cid[:3] for cid in DOENCAS_CID10])].copy()
+
+                # Agrupa por município
+                df_cronicas["MUNIC_RES"] = df_cronicas["MUNIC_RES"].astype(str).str.zfill(6)
+                internacoes = df_cronicas.groupby("MUNIC_RES").size().to_frame("n_internacoes")
+
+                # Junta os dados de internações com a base populacional
+                df_base = df_base.join(internacoes, how="left")
+                df_base["n_internacoes"] = df_base["n_internacoes"].fillna(0).astype(int)
+
+                # Calcula o indicador por 10 mil habitantes
+                df_base["DOENCAS_CRONICAS"] = df_base.apply(
+                    lambda row: (row["n_internacoes"] / row["populacao"]) * 10000 if row["populacao"] > 0 else 0,
+                    axis=1
+                )
+
+                df_base["UF"] = uf
+                df_base["ANO"] = ano
+                df_base["MES"] = mes if mes is not None else 0
+                df_resultados.append(df_base.reset_index())
+
+                # Gera o mapa
+                try:
+                    sufixo = f"_{mes:02d}" if mes is not None else "_ano_inteiro"
+                    gerar_mapa_indicador(
+                        df=df_base,
+                        uf=uf,
+                        ano=ano,
+                        coluna_valor='DOENCAS_CRONICAS',
+                        legenda='Internações por Doenças Crônicas (por 10 mil Hab.)',
+                        cmap='OrRd',
+                        nome_arquivo=f'internacoes_cronicas_{uf}_{ano}{sufixo}',
+                        title=f'{uf} - Internações por Doenças Crônicas ({ano}{"" if mes is None else f"-{mes:02d}"})'
+                    )
+                except Exception as e:
+                    print(f"Erro ao gerar mapa para {uf}/{ano}{'' if mes is None else f'/{mes:02d}'}: {e}")
+
+    if df_resultados:
+        return pd.concat(df_resultados, ignore_index=True)
+    else:
+        return pd.DataFrame()
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Calcula internações por doenças crônicas por 10 mil habitantes.")
+    parser.add_argument("--ufs", nargs="+", default=["TO"], help="Lista de UFs (ex: TO PA MG)")
+    parser.add_argument("--anos", nargs="+", type=int, default=[2022], help="Lista de anos (ex: 2021 2022)")
+    parser.add_argument("--meses", nargs="*", type=int, default=None, help="Lista de meses (ex: 1 2 12). Se não informado, processa o ano inteiro")
+    parser.add_argument("--pop", type=str, default="populacao_brasil_censo_2022_com_estado.csv", help="Arquivo CSV com dados populacionais")
+    parser.add_argument("--saida", type=str, default="internacoes_cronicas_resultado.csv", help="Arquivo CSV de saída")
+
+    args = parser.parse_args()
+
+    df_resultado = calcular_internacoes_cronicas_por_10mil(
+        ufs=args.ufs,
+        anos=args.anos,
+        meses=args.meses,
+        arquivo_populacao=args.pop
+    )
+
+    if not df_resultado.empty:
+        print("\n✅ Indicador calculado com sucesso.")
+        print(df_resultado[['UF', 'ANO', 'MES', 'municipio', 'populacao', 'n_internacoes', 'DOENCAS_CRONICAS']].head())
+        df_resultado.to_csv(args.saida, index=False, sep=';')
+        print(f"\n📄 Resultado salvo como '{args.saida}'")
+    else:
+        print("⚠️ Nenhum dado foi retornado.")
+# -*- coding: utf-8 -*-
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from pysus.online_data.SIM import download as download_sim
+from utils.mapas import gerar_mapa_indicador
+
+def calcular_causas_mal_definidas(ufs=['TO'], anos=[2022], arquivo_populacao="populacao_brasil_censo_2022_com_estado.csv"):
+    """
+    Calcula proporção e taxa de óbitos por causas mal definidas para múltiplas UFs e anos,
+    gerando mapas e retornando um DataFrame com os resultados.
+
+    Parâmetros:
+    - ufs (list): siglas de estados, ex: ['TO', 'MA']
+    - anos (list): anos, ex: [2021, 2022]
+    - arquivo_populacao (str): caminho para CSV com população municipal
+
+    Retorna:
+    - DataFrame com colunas ['UF','ANO','cod_mun_ibge_6','municipio','populacao',
+      'total_obitos','obitos_mal_definidas','PROP_MAL_DEFINIDAS','TX_MAL_DEFINIDAS_P10K']
+    """
+    resultados = []
+
+    for uf in ufs:
+        for ano in anos:
+            print(f"\n=== Processando {uf}/{ano} ===")
+
+                # --- Carrega população ---
+            try:
+                if isinstance(arquivo_populacao, str):
+                    df_pop = pd.read_csv(arquivo_populacao, sep=';', dtype={'cod_mun_ibge_6': str})
+                    # Remova o filtro por ano se seu CSV não tem essa coluna
+                    df_pop_ano = df_pop[df_pop['UF'] == uf].copy()
+                elif isinstance(arquivo_populacao, dict):
+                    df_pop_ano = pd.read_csv(arquivo_populacao[ano], sep=';', dtype={'cod_mun_ibge_6': str})
+                    df_pop_ano = df_pop_ano[df_pop_ano['UF'] == uf].copy()
+                elif isinstance(arquivo_populacao, pd.DataFrame):
+                    # Se sua DataFrame tem ANO, filtra, senão filtra só por UF
+                    if 'ANO' in arquivo_populacao.columns:
+                        df_pop_ano = arquivo_populacao[(arquivo_populacao['UF'] == uf) & (arquivo_populacao['ANO'] == ano)].copy()
+                    else:
+                        df_pop_ano = arquivo_populacao[arquivo_populacao['UF'] == uf].copy()
+                else:
+                    raise ValueError("Parâmetro 'arquivo_populacao' inválido")
+
+                df_base = df_pop_ano.set_index('cod_mun_ibge_6')
+            except Exception as e:
+                print(f"Erro ao carregar população para {uf}/{ano}: {e}")
+                continue
+
+
+            # --- Baixa SIM ---
+            try:
+                sim = download_sim(states=uf, years=ano, groups=["CID10"])
+                df_sim = sim.to_dataframe()
+            except Exception as e:
+                print(f"Erro ao baixar SIM: {e}")
+                continue
+
+            # total de óbitos
+            total = df_sim.groupby("CODMUNRES").size().rename("total_obitos")
+            total.index = total.index.astype(str).str[:6]
+
+            # óbitos por causas mal definidas (CID R00–R99)
+            mal = df_sim[df_sim['CAUSABAS'].astype(str).str.startswith('R')]
+            mal_def = mal.groupby("CODMUNRES").size().rename("obitos_mal_definidas")
+            mal_def.index = mal_def.index.astype(str).str[:6]
+
+            # --- Junta e calcula indicadores ---
+            df = df_base.join(total, how="left") \
+                        .join(mal_def, how="left") \
+                        .fillna(0)
+            df['total_obitos']          = df['total_obitos'].astype(int)
+            df['obitos_mal_definidas']  = df['obitos_mal_definidas'].astype(int)
+            df['PROP_MAL_DEFINIDAS']    = df.apply(
+                lambda r: (r.obitos_mal_definidas/r.total_obitos*100)
+                          if r.total_obitos>0 else 0, axis=1)
+            df['TX_MAL_DEFINIDAS_P10K'] = df.apply(
+                lambda r: (r.obitos_mal_definidas/r.populacao*10000)
+                          if r.populacao>0 else 0, axis=1)
+
+            df['UF'], df['ANO'] = uf, ano
+            resultados.append(df.reset_index())
+
+
+            gerar_mapa_indicador(
+                df=df,
+                uf=uf,
+                ano=ano,
+                coluna_valor="TX_MAL_DEFINIDAS_P10K",
+                legenda="Óbitos causas mal definidas por 10 000 hab.",
+                cmap="YlOrRd",
+                nome_arquivo="mal_definidas",
+                title=f"{uf} – Mal Definidas ({ano})"
+            )
+
+
+    if resultados:
+        return pd.concat(resultados, ignore_index=True)
+    else:
+        print("⚠️ Nenhum dado processado.")
+        return pd.DataFrame()
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Calcula óbitos por causas mal definidas para múltiplos estados e anos.")
+    parser.add_argument("--ufs", nargs="+", default=["TO"], help="Lista de UFs, ex: TO PA MG")
+    parser.add_argument("--anos", nargs="+", type=int, default=[2021, 2022], help="Lista de anos")
+    parser.add_argument("--pop", type=str, default="populacao_brasil_censo_2022_com_estado.csv", help="Arquivo CSV com dados populacionais")
+    parser.add_argument("--saida", type=str, default="causas_mal_definidas_multiplos_estados_anos.csv", help="Arquivo CSV de saída")
+
+    args = parser.parse_args()
+
+    df = calcular_causas_mal_definidas(args.ufs, args.anos, args.pop)
+    if not df.empty:
+        df.to_csv(args.saida, index=False, sep=';')
+        print(f"\n📄 CSV salvo: '{args.saida}'")
+    else:
+        print("⚠️ Nenhum resultado para salvar.")
+
+# -*- coding: utf-8 -*-
+import pandas as pd
+from functools import reduce
+
+# Supondo que todos os scripts de indicadores foram refatorados para serem funções modulares
+from modulos.mortalidade_infantil import calcular_tmi_multiplos_uf_anos
+from modulos.pre_natal import calcular_cobertura_prenatal_multiplos_uf_anos
+from modulos.medicos import calcular_medicos_por_mil
+from modulos.partos_cesareos import calcular_prop_partos_cesareos_multiplos_uf_anos
+from modulos.causas_mal_definidas import calcular_causas_mal_definidas
+from modulos.internacoes_cronicas import calcular_internacoes_cronicas_por_10mil
+
+if __name__ == "__main__":
+    # --- Configurações da Análise ---
+    UFS  = ['TO', 'GO']
+    ANOS = [2021, 2022]
+    POP_FILE = "populacao_brasil_censo_2022_com_estado.csv"
+
+    print("📊 Iniciando orquestrador para múltiplos UF/anos...\n")
+
+    # --- Execução dos Módulos ---
+    # --- Execução dos Módulos ---
+    df_tmi = calcular_tmi_multiplos_uf_anos(
+        ufs=UFS,
+        anos=ANOS,
+        arquivo_populacao=POP_FILE
+    )
+
+    df_prenatal = calcular_cobertura_prenatal_multiplos_uf_anos(
+        ufs=UFS,
+        anos=ANOS,
+        arquivo_populacao=POP_FILE
+    )
+
+    df_medicos = calcular_medicos_por_mil(
+        ufs=UFS,
+        anos=ANOS,
+        meses=None,
+        arquivo_populacao=POP_FILE
+    )
+
+    df_partos = calcular_prop_partos_cesareos_multiplos_uf_anos(
+        ufs=UFS,
+        anos=ANOS,
+        arquivo_populacao=POP_FILE
+    )
+
+    df_mal_def = calcular_causas_mal_definidas(
+        ufs=UFS,
+        anos=ANOS,
+        arquivo_populacao=POP_FILE
+    )
+
+    df_intern = calcular_internacoes_cronicas_por_10mil(
+        ufs=UFS,
+        anos=ANOS,
+        meses=None,
+        arquivo_populacao=POP_FILE
+    )
+
+    print("\n🔄 Todos os cálculos foram concluídos. Integrando os resultados...")
+
+    # --- Consolidação Robusta ---
+
+    # 1. Cria uma lista dos DataFrames de indicadores, selecionando apenas o essencial
+    # A chave de junção é ['cod_mun_ibge_6', 'ANO']
+    lista_dfs = []
+    if not df_tmi.empty:
+        lista_dfs.append(df_tmi[['cod_mun_ibge_6', 'ANO', 'UF', 'municipio', 'populacao', 'TMI']])
+    if not df_prenatal.empty:
+        lista_dfs.append(df_prenatal[['cod_mun_ibge_6', 'ANO', 'COBERTURA_PRENATAL']])
+    if not df_medicos.empty:
+        lista_dfs.append(df_medicos[['cod_mun_ibge_6', 'ANO', 'TAXA_MEDICOS']])
+    if not df_partos.empty:
+        lista_dfs.append(df_partos[['cod_mun_ibge_6', 'ANO', 'PROP_CESAREOS']])
+    if not df_mal_def.empty:
+        lista_dfs.append(df_mal_def[['cod_mun_ibge_6', 'ANO', 'PROP_MAL_DEFINIDAS']])
+    if not df_intern.empty:
+        lista_dfs.append(df_intern[['cod_mun_ibge_6', 'ANO', 'DOENCAS_CRONICAS']])
+
+    # 2. Usa a função 'reduce' para aplicar o merge sequencialmente
+    if lista_dfs:
+        df_final = reduce(
+            lambda left, right: pd.merge(
+                left,
+                right,
+                on=['cod_mun_ibge_6', 'ANO'], # Chave de junção
+                how='outer' # 'outer' garante que nenhuma linha seja perdida
+            ),
+            lista_dfs
+        )
+
+        # 3. Limpeza final
+        df_final.fillna(0, inplace=True)
+
+        # --- Salvamento do Resultado ---
+        output_filename = f"indicadores_integrados.csv"
+        df_final.to_csv(output_filename, sep=';', encoding='utf-8-sig', index=False)
+
+        print("\n✅ Indicadores integrados com sucesso!")
+        print(f"📁 Arquivo consolidado e sem duplicatas salvo como: '{output_filename}'")
+        print("\n--- Amostra do Painel de Dados Final ---")
+        print(df_final.head())
+    else:
+        print("⚠️ Nenhum dado foi calculado com sucesso. Nenhum arquivo foi gerado.")
+# -*- coding: utf-8 -*-
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from scipy.spatial.distance import euclidean
+import os
+import numpy as np
+from pathlib import Path
+
+def classificar_perfis_por_similaridade(perfil_df, arquétipos):
+    """
+    Classifica cada cluster encontrado medindo sua distância euclidiana
+    para um conjunto de arquétipos pré-definidos.
+    """
+    mapeamento = {}
+    for i, row in perfil_df.iterrows():
+        distancias = {
+            nome: euclidean(row.values, perfil)
+            for nome, perfil in arquétipos.items()
+        }
+        perfil_mais_proximo = min(distancias, key=distancias.get)
+        mapeamento[i] = perfil_mais_proximo
+    return mapeamento
+
+def gerar_mapa_perfis_de_saude(
+    shapefile_path: str,
+    df_analise: pd.DataFrame,
+    uf_sigla: str,
+    ano: int,
+    cores_perfis: dict,
+    output_path: str
+):
+    """
+    Gera um mapa temático de perfis de saúde por município.
+
+    Parâmetros:
+    - shapefile_path: caminho para o shapefile dos municípios.
+    - df_analise: DataFrame com colunas 'cod_mun_ibge_6', 'perfil' e 'cor'.
+    - uf_sigla: sigla da UF (ex: 'TO').
+    - ano: ano de referência (ex: 2022).
+    - cores_perfis: dicionário {nome_perfil: cor_hexadecimal}.
+    - output_path: caminho do arquivo de saída (PNG).
+    """
+    import matplotlib.pyplot as plt
+    import matplotlib.patches as mpatches
+
+    gdf_mun = gpd.read_file(shapefile_path)
+    gdf_uf = gdf_mun[gdf_mun["SIGLA_UF"] == uf_sigla].copy()
+    gdf_uf["CD_MUN"] = gdf_uf["CD_MUN"].astype(str).str[:6]
+
+    df_mapa = df_analise[['cod_mun_ibge_6', 'cor', 'perfil']].copy()
+    df_mapa['cod_mun_ibge_6'] = df_mapa['cod_mun_ibge_6'].astype(str)
+
+    gdf_final = gdf_uf.merge(df_mapa, left_on='CD_MUN', right_on='cod_mun_ibge_6')
+
+    fig, ax = plt.subplots(1, 1, figsize=(12, 10))
+    gdf_final.plot(color=gdf_final['cor'], linewidth=0.5, edgecolor="black", ax=ax)
+
+    perfis_presentes = sorted([p for p in gdf_final['perfil'].unique() if p in cores_perfis])
+    patches = [mpatches.Patch(color=cores_perfis[label], label=label) for label in perfis_presentes]
+    ax.legend(handles=patches, title="Perfis de Saúde", loc='upper right', fontsize=12)
+
+    ax.set_title(f'Mapa de Perfis de Saúde - {uf_sigla} {ano}', fontsize=16)
+    ax.axis("off")
+    plt.tight_layout()
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    plt.savefig(output_path, dpi=300)
+    plt.close()
+    print(f"✔️ Mapa de Perfis para {uf_sigla}/{ano} salvo.")
+
+
+def analisar_clusters_com_arquétipos(df_painel):
+    """
+    Executa a análise de cluster e classifica os clusters por similaridade a arquétipos definidos.
+    """
+    output_dir = "resultados_analise_cluster"
+    os.makedirs(output_dir, exist_ok=True)
+
+    cores_perfis = {
+        "Vulnerabilidade Crítica": "#d73027", "Sobrecarga Crônica": "#fc8d59",
+        "Desafio na Cobertura da APS": "#4575b4", "Eficiência na APS": "#1a9850"
+    }
+
+    indicadores = ['TMI', 'COBERTURA_PRENATAL', 'TAXA_MEDICOS', 'PROP_CESAREOS', 'PROP_MAL_DEFINIDAS', 'DOENCAS_CRONICAS']
+
+    # --- PASSO 1: DEFINIR OS ARQUÉTIPOS DE REFERÊNCIA ---
+    arquétipos = {
+        "Vulnerabilidade Crítica": np.array([2.0, -0.5, 0.0, 0.5, 1.0, 0.5]),
+        "Sobrecarga Crônica":    np.array([-0.5, 0.0, 0.0, 0.0, 0.0, 2.0]),
+        "Eficiência na APS":       np.array([-0.5, 1.0, 0.5, -0.5, -0.5, -0.5]),
+        "Desafio na Cobertura da APS":  np.array([0.0, -1.0, -0.5, 0.0, 0.0, 0.0])
+    }
+    print("Arquétipos de saúde definidos.")
+
+    # --- PASSO 2: LOOP DE ANÁLISE E CLASSIFICAÇÃO ---
+    combinacoes = df_painel[['UF', 'ANO']].drop_duplicates()
+    for index, row in combinacoes.iterrows():
+        uf_sigla, ano = row['UF'], row['ANO']
+
+        print(f"\n====================================================")
+        print(f"📊 PROCESSANDO E CLASSIFICANDO: {uf_sigla} - {ano}")
+        print(f"====================================================")
+
+        df_analise = df_painel[(df_painel['UF'] == uf_sigla) & (df_painel['ANO'] == ano)].copy()
+        if df_analise.empty: continue
+
+        scaler = StandardScaler()
+        dados_escalados = scaler.fit_transform(df_analise[indicadores])
+
+        K_OTIMO = 4
+        kmeans = KMeans(n_clusters=K_OTIMO, random_state=42, n_init=10).fit(dados_escalados)
+
+        perfil_clusters_encontrados = pd.DataFrame(kmeans.cluster_centers_, columns=indicadores)
+        mapeamento_nomes = classificar_perfis_por_similaridade(perfil_clusters_encontrados, arquétipos)
+
+        df_analise['cluster_num'] = kmeans.labels_
+        df_analise['perfil'] = df_analise['cluster_num'].map(mapeamento_nomes)
+        df_analise['cor'] = df_analise['perfil'].map(cores_perfis)
+        print(f" -> Mapeamento para {uf_sigla}/{ano}: {mapeamento_nomes}")
+
+        # --- Visualização: Mapa de Perfis ---
+        try:
+            BASE_DIR = Path(__file__).resolve().parent.parent  # sobe 2 níveis (ajuste se precisar)
+            shapefile_path = BASE_DIR / "shapefiles" / "BR_Municipios_2022.shp"
+            output_file = Path(output_dir) / f"mapa_perfis_{uf_sigla.lower()}_{ano}.png"
+
+            gerar_mapa_perfis_de_saude(
+                shapefile_path=str(shapefile_path),
+                df_analise=df_analise,
+                uf_sigla=uf_sigla,
+                ano=ano,
+                cores_perfis=cores_perfis,
+                output_path=str(output_file)
+            )
+        except Exception as e:
+            print(f"⚠️ Erro ao gerar o mapa para {uf_sigla}/{ano}: {e}")
+
+
+
+if __name__ == "__main__":
+    BASE_DIR = Path(__file__).resolve().parent.parent  # sobe 2 níveis (ajuste se precisar)
+    arquivo_painel = BASE_DIR / "indicadores_integrados.csv"
+
+    try:
+        df_painel_completo = pd.read_csv(str(arquivo_painel), sep=';')
+        analisar_clusters_com_arquétipos(df_painel_completo)
+        print("\n✅ Análise de cluster concluída para todas as combinações de UF/Ano.")
+    except FileNotFoundError:
+        print(f"❌ ERRO: Arquivo de painel '{arquivo_painel}' não encontrado.")
